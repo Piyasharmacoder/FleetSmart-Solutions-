@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import UserRouter from './routes/user.route.js'
+import VehicleRouter from './routes/vehicle.route.js'
 import './model/association.js';
 import cors from 'cors';
 
@@ -11,6 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/user', UserRouter);
+app.use('/vehicle', VehicleRouter);
 
 app.use((request, response) => {
     response.status(404).json({ message: 'Page not found' });
