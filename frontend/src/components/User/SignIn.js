@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -10,7 +11,9 @@ function SignIn() {
   const [emailerror, setEmailerror] = useState(" ");
   const [passworderror, setPassworderror] = useState(" ");
 
-  const Register = () => {
+  const navigate = useNavigate();
+
+  const signin = () => {
     axios.post('http://localhost:3001/user/signin', {email, password })
       .then(response => {
         if (response.status === 200) {
@@ -30,18 +33,18 @@ function SignIn() {
     <>
     <ToastContainer />
       <section className="vh-100" style={{ backgroundColor: "#eee" }}>
-        <div className="container h-100">
+        <div className="container-fluid h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-12 col-xl-11">
               <div className="card text-black" style={{ borderRadius: "25px" }}>
                 <div className="card-body p-md-5"> 
                   <div className="row justify-content-center">
 
-                    <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                    <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-1">
                       <img  src="https://www.eichertrucksandbuses.com/_next/image?url=https%3A%2F%2Fcms.eichertrucksandbuses.com%2F%2Fuploads%2Ftruck%2Fsub-category%2Fa8801e43cd738cd3de98de10274b02ff.png&w=1080&q=75"  className="img-fluid"  alt="Sample image"/>
                     </div>
 
-                    <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-2" style={{backgroundColor:"#c6cbc9"}}>
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign In</p>
 
                       <form className="mx-1 mx-md-4">
@@ -65,13 +68,13 @@ function SignIn() {
                         </div>
 
                         <div className="form-check d-flex justify-content-center mb-5">
-                            <label  className="form-check-label"  for="form2Example3">create new account <a href=""> Sign Up</a></label>
+                            <label  className="form-check-label"  for="form2Example3">create new account <a href="" onClick={()=>navigate('/')}> Sign Up</a></label>
                         </div>
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                             {(emailerror===""&&passworderror==="")?
-                          <button type="button" onClick={()=>{SignIn()}} data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-lg">Register</button>:
-                          <button type="submit" onClick={()=>{alert("plese fill all information")}} data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-lg">Register</button>
+                          <button type="button" onClick={()=>{signin()}} data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-lg">SignIn</button>:
+                          <button type="submit" onClick={()=>{alert("plese fill all information")}} data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-lg">SignIn</button>
                             }
                         </div>
 
