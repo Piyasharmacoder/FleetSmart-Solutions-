@@ -9,8 +9,8 @@ const SignIn = lazy(() => import("./components/User/SignIn.js"));
 
 function App() {
   return (
-    <div className="d-flex justify-content-center">
-      <div>
+    <div className="container-fluid p-0 d-flex justify-content-center">
+      <div className="container-fluid p-0">
         <Suspense
           fallback={
             <div

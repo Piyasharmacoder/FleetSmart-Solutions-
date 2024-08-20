@@ -33,7 +33,7 @@ function SignUp() {
   return (
     <>
     <ToastContainer />
-      <section className="vh-100" style={{ backgroundColor: "#eee" }}>
+      <section className="" style={{ backgroundColor: "#eee" }}>
         <div className="container-fluid h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-12 col-xl-11">
@@ -89,7 +89,7 @@ function SignUp() {
                     </div>
 
                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                      <img  src="https://www.eichertrucksandbuses.com/_next/image?url=https%3A%2F%2Fcms.eichertrucksandbuses.com%2F%2Fuploads%2Ftruck%2Fsub-category%2Fa8801e43cd738cd3de98de10274b02ff.png&w=1080&q=75"  className="img-fluid"  alt="Sample image"/>
+                      <img  src="https://pngpix.com/images/hd/eicher-truck-models-showcase-v99w0fxv2j867aq6.jpg"  className="img-fluid"  alt="Sample image"/>
                     </div>
 
                   </div>
