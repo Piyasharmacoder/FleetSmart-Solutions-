@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 function Footer() {
+  const navigate = useNavigate();
   return (
     <>
       <footer class="bg-body-tertiary text-center bg-dark text-success">
@@ -22,18 +25,18 @@ function Footer() {
           <section class="">
             <div class="row text-info">
               <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Home</h5>
+                <h5 class="text-uppercase" style={{cursor:"pointer"}} onClick={() => navigate('/')}>Home</h5>
               </div>
               <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">About</h5>
-              </div>
-
-              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">info</h5>
+                <h5 class="text-uppercase" style={{cursor:"pointer"}} onClick={() => navigate('/about')}>About</h5>
               </div>
 
               <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Contact</h5>
+                <h5 class="text-uppercase" style={{cursor:"pointer"}} onClick={() => navigate('/service')}>Services</h5>
+              </div>
+
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase" style={{cursor:"pointer"}} onClick={() => navigate('/contact')}>Contact</h5>
               </div>
             </div>
           </section>
