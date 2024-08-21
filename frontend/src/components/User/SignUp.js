@@ -24,8 +24,10 @@ function SignUp() {
           }, 2000);
         }
       }).catch(err => {
-        console.log(err);
-        toast.info("User is Already exist...");
+        if(err.response.status === 400){
+          toast.info(err.response.data);
+        }else
+        toast.error("User internal error...");
       });
   };
 

@@ -6,6 +6,9 @@ import Footer from "./components/Footer/Footer.js";
 
 const SignUp = lazy(() => import("./components/User/SignUp.js"));
 const SignIn = lazy(() => import("./components/User/SignIn.js"));
+const Home = lazy(() => import("./components/Home/Home.js"));
+const About = lazy(() => import("./components/About/About.js"));
+const Contact = lazy(() => import("./components/Contact/Contact.js"));
 
 function App() {
   return (
@@ -19,8 +22,11 @@ function App() {
         } >
           <Header />
           <Routes>
-            <Route path="/" element={<SignUp />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
           <Footer />
         </Suspense>
