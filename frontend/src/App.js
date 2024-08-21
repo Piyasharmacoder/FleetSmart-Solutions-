@@ -11,23 +11,12 @@ function App() {
   return (
     <div className="container-fluid p-0 d-flex justify-content-center">
       <div className="container-fluid p-0">
-        <Suspense
-          fallback={
-            <div
-              className="vw-100 d-flex flex-column justify-content-center align-items-center"
-              style={{ height: "400px" }}
-            >
-              <h1
-                className="spinner-border"
-                style={{
-                  height: "100px",
-                  width: "100px",
-                }}
-              ></h1>
-              <h1>Loading...</h1>
-            </div>
-          }
-        >
+        <Suspense fallback={
+          <div className="vw-100 d-flex flex-column justify-content-center align-items-center" style={{ height: "400px" }} >
+            <h1 className="spinner-border" style={{ height: "100px", width: "100px", }} ></h1>
+            <h1>Loading...</h1>
+          </div>
+        } >
           <Header />
           <Routes>
             <Route path="/" element={<SignUp />} />

@@ -8,7 +8,7 @@ function Footer() {
               <div class="row d-flex justify-content-center">
                 <div class="col-md-5 col-12">
                   <div class="form-outline mb-4 fs-4 text-light">
-                    <img src="https://www.motorindiaonline.in/wp-content/uploads/2023/04/VRL-Haulage-range-1024x337.png" height={100}></img><br />Fleet Management System
+                    <img src="footer.png" height={100}></img><br />Fleet Management System
                   </div>
                 </div>
               </div>

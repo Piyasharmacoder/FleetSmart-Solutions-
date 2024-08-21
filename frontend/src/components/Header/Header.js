@@ -2,7 +2,7 @@ function Header() {
   return (<>
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-0 m-0">
       <div className="container-fluid m-0">
-        <a className="navbar-brand" href=""> <img src="https://pngpix.com/images/hd/eicher-truck-models-showcase-v99w0fxv2j867aq6.jpg" alt="...." height={60} className="" /> <span> FleetMaster</span></a>
+        <a className="navbar-brand" href=""> <img src="logo.png" alt="...." height={60} className="" /> <span> FleetMaster</span></a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
           <span className="navbar-toggler-icon"></span>
         </button>
