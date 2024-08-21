@@ -2,12 +2,14 @@ import { validationResult } from "express-validator";
 import User from "../model/user.model.js";
 import jwt from "jsonwebtoken";
 
-export const signUp = (request, response, next) => {
+export const signUp = async (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
     return response.status(401).json({ error: errors.array() });
 
-  if (!User.findOne({ where: { email: request.body.email } })) {
+  const user = await User.findOne({ where: { email: request.body.email } });
+
+  if (!user) {
     User.create({
       name: request.body.name,
       email: request.body.email,
@@ -25,9 +27,7 @@ export const signUp = (request, response, next) => {
           .json({ error: "Internal server error...", err });
       });
   } else {
-    console.log("User already exist.");
-
-    return response.status(400).json("User already exist...");
+    return response.status(400).json({ message: "User already exist..." });
   }
 };
 

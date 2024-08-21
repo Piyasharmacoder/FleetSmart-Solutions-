@@ -1,4 +1,7 @@
 import Category from "./category.model.js";
+import Rental from "./rental.model.js";
+import RentalItems from "./rentalitems.model.js";
+import User from "./user.model.js";
 import Vehicle from "./vehicle.model.js";
 console.log("Association Executed.......");
 
@@ -41,10 +44,10 @@ Vehicle.belongsTo(Category, { foreignKey: "categoryname" });
 // Doctor.hasOne(DoctorDetail, { foreignKey: "id" });
 // DoctorDetail.belongsTo(Doctor, { foreignKey: "doctorId", targetKey: "id" });
 
-// User.hasOne(Cart);
-// Cart.belongsTo(User);
+User.hasOne(Rental);
+Rental.belongsTo(User);
 
-// Cart.belongsToMany(Product, { through: CartItems });
-// Product.belongsToMany(Cart, { through: CartItems });
+Rental.belongsToMany(Vehicle, { through: RentalItems });
+Vehicle.belongsToMany(Rental, { through: RentalItems });
 
-export { Category, Vehicle };
+export { Category, Vehicle, User, Rental, RentalItems };
