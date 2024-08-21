@@ -3,25 +3,31 @@ import Category from "../model/category.model.js";
 import Vehicle from "../model/vehicle.model.js";
 import { Op } from "sequelize";
 
-export const save = (request, response, next) => {
+export const save = async (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
     return response.status(401).json({ error: errors.array() });
 
-  Category.create({
-    categoryName: request.body.categoryName,
-    imageUrl: request.body.imageUrl,
-  })
-    .then((result) => {
-      return response
-        .status(200)
-        .json({ data: result.dataValues, message: "category created..." });
+  const category = await Category.findOne({ where: { categoryName: request.body.categoryName } });
+
+  if (!category) {
+    Category.create({
+      categoryName: request.body.categoryName,
+      imageUrl: request.body.imageUrl,
     })
-    .catch((err) => {
-      return response
-        .status(500)
-        .json({ error: "Internal server error...", err });
-    });
+      .then((result) => {
+        return response
+          .status(200)
+          .json({ data: result.dataValues, message: "category created..." });
+      })
+      .catch((err) => {
+        return response
+          .status(500)
+          .json({ error: "Internal server error...", err });
+      });
+  } else {
+    return response.status(400).json({ message: "Category already exist..." });
+  }
 };
 
 export const saveInBulk = async (request, response, next) => {

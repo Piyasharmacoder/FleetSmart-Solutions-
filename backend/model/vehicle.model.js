@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/dbconfig.js";
+import Rental from "./rental.model.js";
+import RentalItems from "./rentalitems.model.js";
 
 const Vehicle = sequelize.define(
   "Vehicle",
@@ -59,5 +61,8 @@ sequelize
     console.log("something wrong....");
     console.log(err);
   });
+
+Rental.belongsToMany(Vehicle, { through: RentalItems })
+Vehicle.belongsToMany(Rental, { through: RentalItems })
 
 export default Vehicle;

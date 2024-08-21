@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import UserRouter from "./routes/user.route.js";
+import RentalRouter from "./routes/rental.route.js";
 import VehicleRouter from "./routes/vehicle.route.js";
 import CategoryRouter from "./routes/category.route.js";
 import "./model/association.js";
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/user", UserRouter);
+app.use("/rental", RentalRouter);
 app.use("/vehicle", VehicleRouter);
 app.use("/category", CategoryRouter);
 
