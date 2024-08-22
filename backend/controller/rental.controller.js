@@ -12,7 +12,7 @@ export const addToRental = async (request, response, next) => {
             return response.status(401).json({ error: "Bad request...", errors });
 
         let { userId, VehicleId, quantity } = request.body;
-        let rental = await Rental.findOne({ where: { userId: userId } });        
+        let rental = await Rental.findOne({ where: { userId: userId } });
 
         if (rental) {
             let isExists = !! await RentalItems.findOne({ raw: true, where: { rentalId: rental.id, VehicleId } });
@@ -24,12 +24,12 @@ export const addToRental = async (request, response, next) => {
             return response.status(200).json({ message: 'Vehicle successfully added into rental' });
         }
         else {
-            rental = await Rental.create({ userId: userId*1 }, { transaction })
+            rental = await Rental.create({ userId: userId * 1 }, { transaction })
                 .then(result => { return result.dataValues });
 
-                await RentalItems.create({ rentalId: rental.id, VehicleId, quantity }, { transaction });
-                await transaction.commit();
-                return response.status(200).json({ message: 'Vehicle successfully added into rental' });
+            await RentalItems.create({ rentalId: rental.id, VehicleId, quantity }, { transaction });
+            await transaction.commit();
+            return response.status(200).json({ message: 'Vehicle successfully added into rental' });
         }
     }
     catch (err) {
@@ -49,7 +49,7 @@ export const fetchRentalItems = (request, response, next) => {
     })
         .then(result => {
             if (result[0])
-            return response.status(200).json({ data: result });
+                return response.status(200).json({ data: result });
             return response.status(401).json({ error: "data are not abelevel........" });
         }).catch(err => {
             return response.status(500).json({ error: "Internal Server Error", err });
@@ -63,7 +63,7 @@ export const removeFromRental = async (request, response, next) => {
 
     let rental = await Rental.findOne({ where: { userId: request.body.userId } });
     if (rental) {
-RentalItems.destroy({ where: { rentalId: rental.id, VehicleId: request.body.VehicleId } })        
+        RentalItems.destroy({ where: { rentalId: rental.id, VehicleId: request.body.VehicleId } })
             .then(result => {
                 if (result)
                     return response.status(200).json({ message: "Item removed", removedItem: result });
