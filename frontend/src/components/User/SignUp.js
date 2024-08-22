@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+import SignIn from "./SignIn";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -14,31 +15,31 @@ function SignUp() {
   const [passworderror, setPassworderror] = useState("  ");
 
   const navigate = useNavigate();
-  const Register = async() => {
-      axios.post('http://localhost:3001/user/signup', { name, email, password })
+
+  const Register = async () => {
+    axios.post('http://localhost:3001/user/signup', { name, email, password })
       .then(response => {
-          if (response.status === 200) {
-              toast.success("Sign Up Success....");
-              setTimeout(()=>{navigate('/signIn')},2000)
+        if (response.status === 200) {
+          toast.success("Sign Up Success....");
+          setTimeout(() => { navigate('/signIn') }, 2000)
         }
       }).catch(err => {
-        if(err.response.status === 400){
+        if (err.response.status === 400) {
           toast.info('user already exist...');
-        }else
-        toast.error("User internal error...");
+        } else
+          toast.error("User internal error...");
       });
   };
 
   const handleSubmit = event => {
     event.preventDefault(); // 👈️ prevent page refresh
-}
-
+  }
 
   return (
     <>
       <ToastContainer />
       <section className="" style={{ backgroundColor: "#eee" }}>
-        <div className="container-fluid h-100">
+        <div className="container-fluid h-100 p-5">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-12 col-xl-11">
               <div className="card text-black" style={{ borderRadius: "25px" }}>
@@ -79,7 +80,7 @@ function SignUp() {
                         </div>
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          {(nameerror === emailerror && emailerror === passworderror) ? <button className="btn btn-dark"  onClick={() => { Register() }}>Register</button>                                            : <button className="btn btn-secondary" onClick={() => { (name === "") ? setNameerror("name is required") : (email === "") ? setEmailerror("email is required") : (password === "") ? setPassworderror("password is required") : setPassworderror(" ") }}>Register</button>}
+                          {(emailerror === passworderror) ? <button className="btn btn-dark" onClick={() => { SignIn() }}>Register</button> : <button className="btn btn-secondary" onClick={() => { (name === "") ? setNameerror("name is required") : (email === "") ? setEmailerror("email is required") : (password === "") ? setPassworderror("password is required") : setPassworderror(" ") }}>Register</button>}
                         </div>
 
                       </form>

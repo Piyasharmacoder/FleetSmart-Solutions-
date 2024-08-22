@@ -1,20 +1,11 @@
 import express from "express";
-import {
-  add,
-  byCategory,
-  list,
-  remove,
-  saveInBulk,
-  update,
-  view,
-} from "../controller/vehicle.controller.js";
+import { add, byCategory, list, remove, saveInBulk, update, view, } from "../controller/vehicle.controller.js";
 import { verifyToken } from "../middleware/auth.js";
 import { body, check } from "express-validator";
 
 const router = express.Router();
 
-router.post(
-  "/add",
+router.post("/add",
   body("brand", "brand is require").notEmpty(),
   body("model", "model is require").notEmpty(),
   body("rent", "rent is require").notEmpty(),
@@ -28,8 +19,7 @@ router.post(
 
 router.post("/addinbulk", saveInBulk);
 
-router.put(
-  "/update",
+router.put("/update",
   body("brand", "brand is require").notEmpty(),
   body("model", "model is require").notEmpty(),
   body("rent", "rent is require").notEmpty(),
@@ -42,8 +32,7 @@ router.put(
   update
 );
 
-router.post(
-  "/byCategory",
+router.post("/byCategory",
   body("id", "id is require").notEmpty().isNumeric(),
   byCategory
 );
@@ -52,8 +41,7 @@ router.post("/view", body("id", "id is require").notEmpty().isNumeric(), view);
 
 router.get("/list", list);
 
-router.delete(
-  "/remove",
+router.delete("/remove",
   body("id", "id is require").notEmpty().isNumeric(),
   remove
 );

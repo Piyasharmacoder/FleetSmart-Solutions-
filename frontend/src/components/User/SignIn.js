@@ -9,7 +9,7 @@ function SignIn() {
   const [password, setPassword] = useState("");
 
   const [emailerror, setEmailerror] = useState(" ");
-  const [passworderror, setPassworderror] = useState(" ");
+  const [passworderror, setPassworderror] = useState("  ");
 
   const navigate = useNavigate();
 
@@ -18,22 +18,22 @@ function SignIn() {
       .then(response => {
         if (response.status === 200) {
           toast.success("Sign In Success....");
-          setTimeout(() => {
-            window.location.reload(); // Reload the page after 2 seconds
-          }, 2000);
+          setTimeout(() => { navigate('/') }, 2000)
         }
       }).catch(err => {
-        console.log(err);
         toast.info("Unautharised User...");
       });
   };
 
+  const handleSubmit = event => {
+    event.preventDefault(); // 👈️ prevent page refresh
+  }
 
   return (
     <>
       <ToastContainer />
-      <section className="vh-100" style={{ backgroundColor: "#eee" }}>
-        <div className="container-fluid h-100">
+      <section className="" style={{ backgroundColor: "#eee" }}>
+        <div className="container-fluid h-100 p-5">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-12 col-xl-11">
               <div className="card text-black" style={{ borderRadius: "25px" }}>
@@ -47,7 +47,7 @@ function SignIn() {
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-2" style={{ backgroundColor: "#c6cbc9" }}>
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign In</p>
 
-                      <form className="mx-1 mx-md-4">
+                      <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
 
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -72,10 +72,7 @@ function SignIn() {
                         </div>
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          {(emailerror === "" && passworderror === "") ?
-                            <button type="button" onClick={() => { signin() }} data-mdb-button-init data-mdb-ripple-init className="btn btn-dark btn-lg">SignIn</button> :
-                            <button type="submit" onClick={() => { alert("plese fill all information") }} data-mdb-button-init data-mdb-ripple-init className="btn btn-secondary btn-lg">SignIn</button>
-                          }
+                          {(emailerror === passworderror) ? <button className="btn btn-dark" onClick={() => { signin() }}>SignIn</button> : <button className="btn btn-secondary" onClick={() => { (email === "") ? setEmailerror("email is required") : (password === "") ? setPassworderror("password is required") : setPassworderror(" ") }}>Register</button>}
                         </div>
 
                       </form>

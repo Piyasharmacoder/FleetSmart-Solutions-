@@ -16,15 +16,11 @@ export const signUp = async (request, response, next) => {
       password: request.body.password,
     })
       .then((result) => {
-        return response
-          .status(200)
-          .json({ data: result.dataValues, message: "User created..." });
+        return response.status(200).json({ data: result.dataValues, message: "User created..." });
       })
       .catch((err) => {
         console.log(err);
-        return response
-          .status(500)
-          .json({ error: "Internal server error...", err });
+        return response.status(500).json({ error: "Internal server error...", err });
       });
   } else {
     return response.status(400).json({ message: "User already exist..." });
@@ -43,13 +39,8 @@ export const signIn = async (request, response, next) => {
   if (user) {
     if (User.checkPassword(password, user.password)) {
       let payload = { subject: email };
-      let token = jwt.sign(
-        payload,
-        "fdfjfjrwieroerivxcnmvnnvrweiorddfsdfdlkfjlfjljlraj"
-      );
-      return response
-        .status(200)
-        .json({ message: "Sign In Success", user, token: token });
+      let token = jwt.sign(payload, "fdfjfjrwieroerivxcnmvnnvrweiorddfsdfdlkfjlfjljlraj");
+      return response.status(200).json({ message: "Sign In Success", user, token: token });
     } else {
       return response.status(401).json({ error: "Unauthorized user" });
     }
@@ -73,7 +64,6 @@ export const update = (request, response, next) => {
     }
   )
     .then((result) => {
-      // console.log(result)
       if (result[0])
         return response.status(200).json({ message: "user updated...." });
       return response.status(401).json({ message: "unauthorized request...." });
@@ -90,10 +80,7 @@ export const view = (request, response, next) => {
   if (!errors.isEmpty())
     return response.status(401).json({ error: errors.array() });
 
-  User.findOne({
-    where: { email: request.body.email },
-    raw: true,
-  })
+  User.findOne({ where: { email: request.body.email }, raw: true, })
     .then((result) => {
       if (result) return response.status(200).json({ data: result });
       return response.status(401).json({ message: "unauthorized request" });
@@ -109,9 +96,7 @@ export const list = (request, response, next) => {
       return response.status(200).json({ data: result });
     })
     .catch((err) => {
-      return response
-        .status(500)
-        .json({ error: "Internal server error...", err });
+      return response.status(500).json({ error: "Internal server error...", err });
     });
 };
 
@@ -130,8 +115,6 @@ export const remove = (request, response, next) => {
       return response.status(401).json({ message: "unauthorized request...." });
     })
     .catch((err) => {
-      return response
-        .status(500)
-        .json({ error: "Internal server error.....", err });
+      return response.status(500).json({ error: "Internal server error.....", err });
     });
 };

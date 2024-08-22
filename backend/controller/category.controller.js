@@ -16,14 +16,10 @@ export const save = async (request, response, next) => {
       imageUrl: request.body.imageUrl,
     })
       .then((result) => {
-        return response
-          .status(200)
-          .json({ data: result.dataValues, message: "category created..." });
+        return response.status(200).json({ data: result.dataValues, message: "category created..." });
       })
       .catch((err) => {
-        return response
-          .status(500)
-          .json({ error: "Internal server error...", err });
+        return response.status(500).json({ error: "Internal server error...", err });
       });
   } else {
     return response.status(400).json({ message: "Category already exist..." });

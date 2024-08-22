@@ -16,30 +16,30 @@ export const add = (request, response, next) => {
     registration_number: request.body.registration_number,
     image: request.body.image,
   })
-  .then((result) => {
-    return response.status(200).json({ message: "Vehicle Saved...." });
-})
-.catch((err) => {
-    return response.status(500).json({ error: "Internal server error...", err });
-})
+    .then((result) => {
+      return response.status(200).json({ message: "Vehicle Saved...." });
+    })
+    .catch((err) => {
+      return response.status(500).json({ error: "Internal server error...", err });
+    })
 };
 
 export const saveInBulk = async (request, response, next) => {
 
-    try {
-        let vehicleList = request.body;
+  try {
+    let vehicleList = request.body;
 
-        for (let vehicle of vehicleList) {
-            let { id, brand, model, rent, description, categoryname, year, registration_number, image } = vehicle;
+    for (let vehicle of vehicleList) {
+      let { id, brand, model, rent, description, categoryname, year, registration_number, image } = vehicle;
 
-            await Vehicle.create({
-                id, brand, model, rent, description, categoryname, year, registration_number, image
-            })
-        }
-        return response.status(200).json({ message: "All Vehicles Saved...." });
-    } catch (err) {
-        return response.status(500).json({ error: "Internal Server Error", err });
+      await Vehicle.create({
+        id, brand, model, rent, description, categoryname, year, registration_number, image
+      })
     }
+    return response.status(200).json({ message: "All Vehicles Saved...." });
+  } catch (err) {
+    return response.status(500).json({ error: "Internal Server Error", err });
+  }
 }
 
 export const update = (request, response, next) => {
@@ -101,21 +101,19 @@ export const list = (request, response, next) => {
       return response.status(200).json({ data: result });
     })
     .catch((err) => {
-      return response
-        .status(500)
-        .json({ error: "Internal server error...", err });
+      return response.status(500).json({ error: "Internal server error...", err });
     });
 };
 
 export const byCategory = (request, response, next) => {
-    Vehicle.findAll({ where: { categoryname: request.body.categoryName } })
-        .then(result => {
-            if (result[0])
-                return response.status(200).json({ productList: result })
-            return response.status(401).json({ error: "Unauthorized request" });
-        }).catch(err => {
-            return response.status(500).json({ error: "Internal Server Error", err });
-        })
+  Vehicle.findAll({ where: { categoryname: request.body.categoryName } })
+    .then(result => {
+      if (result[0])
+        return response.status(200).json({ productList: result })
+      return response.status(401).json({ error: "Unauthorized request" });
+    }).catch(err => {
+      return response.status(500).json({ error: "Internal Server Error", err });
+    })
 }
 
 export const remove = (request, response, next) => {
@@ -133,8 +131,6 @@ export const remove = (request, response, next) => {
       return response.status(401).json({ message: "unauthorized request...." });
     })
     .catch((err) => {
-      return response
-        .status(500)
-        .json({ error: "Internal server error.....", err });
+      return response.status(500).json({ error: "Internal server error.....", err });
     });
 };
