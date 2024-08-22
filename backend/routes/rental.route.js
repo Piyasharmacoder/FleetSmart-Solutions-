@@ -1,19 +1,35 @@
 import express from "express";
-import { addToRental, fetchRentalItems, removeFromRental, update } from "../controller/rental.controller.js";
+import {
+  addToRental,
+  fetchRentalItems,
+  removeFromRental,
+  update,
+} from "../controller/rental.controller.js";
 import { body } from "express-validator";
 
 const router = express.Router();
 
-router.post("/add",
-    body("userId", "invalid userId").notEmpty(),
-    body("quantity", "invalid quantity").notEmpty(),
-    body("vehicleId", "invalid vehicleId").notEmpty(),
-    addToRental);
+router.post(
+  "/add",
+  body("userId", "invalid userId").notEmpty(),
+  body("VehicleId", "invalid vehicleId").notEmpty(),
+  body("quantity", "invalid quantity").notEmpty(),
+  addToRental
+);
 
-router.get("/fetchRentalItems", fetchRentalItems);
+router.post(
+  "/fetchRentalItems",
+  body("userId", "invalid userId").notEmpty(),
+  fetchRentalItems
+);
 
-router.delete("/removeRentalItems", removeFromRental);
+router.delete(
+  "/removeRentalItems",
+  body("userId", "invalid userId").notEmpty(),
+  body("VehicleId", "invalid vehicleId").notEmpty(),
+  removeFromRental
+);
 
-router.post("/update", update);
+router.put("/update", update);
 
 export default router;

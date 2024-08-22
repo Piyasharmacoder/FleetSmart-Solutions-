@@ -11,28 +11,25 @@ export const addToRental = async (request, response, next) => {
         if (!errors.isEmpty())
             return response.status(401).json({ error: "Bad request...", errors });
 
-        let { userId, vehicleId, quantity } = request.body;
-        let rental = await Rental.findOne({ where: { userId: userId } });
+        let { userId, VehicleId, quantity } = request.body;
+        let rental = await Rental.findOne({ where: { userId: userId } });        
 
         if (rental) {
-            let isExists = !! await RentalItems.findOne({ raw: true, where: { rentId: rental.id, vehicleId, quantity } });
+            let isExists = !! await RentalItems.findOne({ raw: true, where: { rentalId: rental.id, VehicleId } });
             if (isExists)
                 return response.status(401).json({ message: "Vehicle is already added in rental" });
 
-            await RentalItems.create({ rantalId: rental.id, vehicleId, quantity }, { transaction });
+            await RentalItems.create({ rentalId: rental.id, VehicleId, quantity }, { transaction });
             await transaction.commit();
-            return response.status(200).json({ message: 'Vehicle successfully added into rentaly' });
+            return response.status(200).json({ message: 'Vehicle successfully added into rental' });
         }
         else {
             rental = await Rental.create({ userId: userId*1 }, { transaction })
                 .then(result => { return result.dataValues });
 
-            await RentalItems.create({ rentalId: rental.id, vehicleId: vehicleId, quantity: quantity }, { transaction })
-                .then(result => { return result.dataValues });
-
-            await transaction.commit();
-
-            return response.status(201).json({ message: "Item Successfully added into rental" });
+                await RentalItems.create({ rentalId: rental.id, VehicleId, quantity }, { transaction });
+                await transaction.commit();
+                return response.status(200).json({ message: 'Vehicle successfully added into rental' });
         }
     }
     catch (err) {
@@ -48,12 +45,12 @@ export const fetchRentalItems = (request, response, next) => {
 
     Rental.findAll({
         where: { userId: request.body.userId },
-        // include: [{ model: Vehicle, required: true }]
+        include: [{ model: Vehicle, required: true }]
     })
         .then(result => {
-            // if (result[0])
+            if (result[0])
             return response.status(200).json({ data: result });
-            // return response.status(401).json({ error: "data are not abelevel........" });
+            return response.status(401).json({ error: "data are not abelevel........" });
         }).catch(err => {
             return response.status(500).json({ error: "Internal Server Error", err });
         });
@@ -66,7 +63,7 @@ export const removeFromRental = async (request, response, next) => {
 
     let rental = await Rental.findOne({ where: { userId: request.body.userId } });
     if (rental) {
-        RentalItems.destroy({ where: { rentalId: rental.id, vehicleId: request.body.vehicleId } })
+RentalItems.destroy({ where: { rentalId: rental.id, VehicleId: request.body.VehicleId } })        
             .then(result => {
                 if (result)
                     return response.status(200).json({ message: "Item removed", removedItem: result });
@@ -80,17 +77,17 @@ export const removeFromRental = async (request, response, next) => {
 }
 
 export const update = async (req, res, next) => {
-    let { vehicleId, quantity, userId } = req.body;
+    let { VehicleId, quantity, userId } = req.body;
     try {
         const rental = await Rental.findOne({ where: { userId } });
-        console.log(rental.id, vehicleId * 1);
+        console.log(rental.id, VehicleId * 1);
 
         if (!rental) {
             return res.status(404).json({ message: "Rental not found" });
         }
         const updatedItems = await RentalItems.update(
             { quantity: quantity },
-            { where: { rentalId: rental.id, vehicleId: vehicleId * 1 } }
+            { where: { rentalId: rental.id, VehicleId: VehicleId * 1 } }
         );
         return res.status(200).json({ message: "Quantity updated successfully", updatedItems });
     } catch (err) {
