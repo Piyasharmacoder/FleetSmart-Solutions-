@@ -73,8 +73,8 @@ function SignIn() {
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           {(emailerror === "" && passworderror === "") ?
-                            <button type="button" onClick={() => { signin() }} data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-lg">SignIn</button> :
-                            <button type="submit" onClick={() => { alert("plese fill all information") }} data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-lg">SignIn</button>
+                            <button type="button" onClick={() => { signin() }} data-mdb-button-init data-mdb-ripple-init className="btn btn-dark btn-lg">SignIn</button> :
+                            <button type="submit" onClick={() => { alert("plese fill all information") }} data-mdb-button-init data-mdb-ripple-init className="btn btn-secondary btn-lg">SignIn</button>
                           }
                         </div>
 
