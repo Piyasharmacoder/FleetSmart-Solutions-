@@ -4,8 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header.js";
 import Footer from "./components/Footer/Footer.js";
 
-const SignUp = lazy(() => import("./components/User/SignUp.js"));
-const SignIn = lazy(() => import("./components/User/SignIn.js"));
+import SignUp from "./components/User/SignUp.js";
+import SignIn from "./components/User/SignIn.js";
 const Home = lazy(() => import("./components/Home/Home.js"));
 const About = lazy(() => import("./components/About/About.js"));
 const Contact = lazy(() => import("./components/Contact/Contact.js"));
