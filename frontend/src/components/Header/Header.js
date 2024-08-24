@@ -6,7 +6,7 @@ function Header() {
     <div className="my-3 py-3"></div>
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-0 m-0 fixed-top">
       <div className="container-fluid m-0">
-        <a className="navbar-brand" onClick={() => navigate('/')}> <img src="logo.png" alt="...." height={60} className="" /> <span> FleetMaster</span></a>
+        <a className="navbar-brand" onClick={() => navigate('/')}> <img src="image/jcb.png" alt="...." height={60} className="" /> <span> FleetMaster</span></a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
           <span className="navbar-toggler-icon"></span>
         </button>

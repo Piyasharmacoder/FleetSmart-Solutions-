@@ -1,30 +1,53 @@
+import { useState } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
+
 function Home() {
+  const [index, setIndex] = useState(0);
+ 
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  }
   return (
     <>
       <div className="container-fluid bg-light">
-        <br />
-        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="logo.png" class="d-block w-100" data-bs-interval="100" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="footer.png" class="d-block w-100" data-bs-interval="100" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="pngegg.png" class="d-block w-100" data-bs-interval="100" alt="..." />
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-        <br />
+        <Carousel activeIndex={index} onSelect={handleSelect} interval={1000} controls={false} >
+          <Carousel.Item>
+            <center>
+              <img className="d-block" height={400} src="image/jcb.png" alt="Second slide" style={{objectFit: 'cover' }}/>
+            </center>
+          </Carousel.Item>
+          <Carousel.Item>
+            <center>
+              <img className="d-block" height={400} src="image/truck.png" alt="Third slide" style={{ objectFit: 'cover' }}/>
+            </center>
+          </Carousel.Item>
+          <Carousel.Item>
+            <center>
+              <img className="d-block" height={400} src="image/roadroler.png" alt="Third slide" style={{ objectFit: 'cover' }}/>
+            </center>
+          </Carousel.Item>
+          <Carousel.Item>
+            <center>
+              <img className="d-block" height={400} src="image/loader.png" alt="Third slide" style={{ objectFit: 'cover' }}/>
+            </center>
+          </Carousel.Item>
+          <Carousel.Item>
+            <center>
+              <img className="d-block" height={400} src="image/dumptruck.png" alt="Third slide" style={{ objectFit: 'cover' }}/>
+            </center>
+          </Carousel.Item>
+          <Carousel.Item>
+            <center>
+              <img className="d-block" height={400} src="image/tractor.png" alt="Third slide" style={{ objectFit: 'cover' }}/>
+            </center>
+          </Carousel.Item>
+          <Carousel.Item>
+            <center>
+              <img className="d-block" height={400} src="image/crane.png" alt="Third slide" style={{ objectFit: 'cover' }}/>
+            </center>
+          </Carousel.Item>
+        </Carousel>
+        <hr/>
         <h1 className="text-center">Rentel services</h1>
         <div class="w-100 d-flex justify-content-around">
           <div class="dropdown dropend">
