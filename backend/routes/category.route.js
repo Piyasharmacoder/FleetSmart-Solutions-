@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.post("/add",
   body("categoryName", "invalid categoryName").notEmpty(),
+  body("use", "invalid use").notEmpty(),
+  body("description", "invalid description").notEmpty(),
   body("imageUrl", "invalid imageUrl").notEmpty(),
   save
 );

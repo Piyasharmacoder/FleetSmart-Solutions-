@@ -6,6 +6,14 @@ const Category = sequelize.define("category", {
         type: DataTypes.STRING,
         primaryKey: true
     },
+    use: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     imageUrl: {
         type: DataTypes.STRING(1000),
         allowNull: false

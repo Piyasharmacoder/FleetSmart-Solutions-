@@ -13,6 +13,8 @@ export const save = async (request, response, next) => {
   if (!category) {
     Category.create({
       categoryName: request.body.categoryName,
+      use: request.body.use,
+      description: request.body.description,
       imageUrl: request.body.imageUrl,
     })
       .then((result) => {
@@ -31,9 +33,11 @@ export const saveInBulk = async (request, response, next) => {
     let categoryList = request.body;
 
     for (let category of categoryList) {
-      let { categoryName, imageUrl } = category;
+      let { categoryName, imageUrl, use, description } = category;
 
-      await Category.create({ categoryName, imageUrl });
+      let categoryname = await Category.findOne({ where: { categoryName } })
+      if (!categoryname)
+        await Category.create({ categoryName, use, description, imageUrl });
     }
     return response.status(200).json({ message: "All Category Saved.." });
   } catch (err) {

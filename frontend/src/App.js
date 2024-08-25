@@ -6,6 +6,8 @@ import Footer from "./components/Footer/Footer.js";
 
 import SignUp from "./components/User/SignUp.js";
 import SignIn from "./components/User/SignIn.js";
+import Vehicle from "./components/Vehicle/Vehicle.js";
+import Rental from "./components/Rental/Rental.js";
 const Home = lazy(() => import("./components/Home/Home.js"));
 const About = lazy(() => import("./components/About/About.js"));
 const Contact = lazy(() => import("./components/Contact/Contact.js"));
@@ -27,6 +29,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/vehicle" element={<Vehicle />} />
+            <Route path="/rental" element={<Rental />} />
           </Routes>
           <Footer />
         </Suspense>

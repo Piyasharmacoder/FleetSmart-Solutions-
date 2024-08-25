@@ -20,6 +20,7 @@ export const addToRental = async (request, response, next) => {
                 return response.status(401).json({ message: "Vehicle is already added in rental" });
 
             await RentalItems.create({ rentalId: rental.id, VehicleId, quantity }, { transaction });
+            Vehicle.update({ active: false }, { where: { id: VehicleId } })
             await transaction.commit();
             return response.status(200).json({ message: 'Vehicle successfully added into rental' });
         }
@@ -28,6 +29,8 @@ export const addToRental = async (request, response, next) => {
                 .then(result => { return result.dataValues });
 
             await RentalItems.create({ rentalId: rental.id, VehicleId, quantity }, { transaction });
+            console.log("call", userId)
+            Vehicle.update({ active: false }, { where: { id: VehicleId } })
             await transaction.commit();
             return response.status(200).json({ message: 'Vehicle successfully added into rental' });
         }
@@ -63,6 +66,7 @@ export const removeFromRental = async (request, response, next) => {
 
     let rental = await Rental.findOne({ where: { userId: request.body.userId } });
     if (rental) {
+        await Vehicle.update({ active: true }, { where: { id: request.body.VehicleId } })
         RentalItems.destroy({ where: { rentalId: rental.id, VehicleId: request.body.VehicleId } })
             .then(result => {
                 if (result)

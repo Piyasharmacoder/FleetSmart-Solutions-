@@ -1,0 +1,74 @@
+[
+    {
+        "categoryName": "Backhoe",
+        "use": "Multi-purpose vehicles used for digging, trenching, back-filling, and material handling.",
+        "description": "A versatile machine that combines a tractor, a front shovel, and a small backhoe on the back. It is used for digging, trenching, back-filling, and material handling. It is a multipurpose piece of equipment on a construction site.",
+        "imageUrl": "https://5.imimg.com/data5/IQ/XL/MG/SELLER-5817670/backhoe-loader-renting-services.jpg"
+    },
+    {
+        "categoryName": "Dump truck",
+        "use": "Used for transporting loose materials like sand, gravel, or demolition waste.",
+        "description": "A vehicle with a large, open-box bed at the back that can be tilted to unload loose materials such as sand, gravel, demolition waste, and more. It is primarily used for transporting bulk materials.",
+        "imageUrl": "https://www.shutterstock.com/image-photo/new-orange-construction-dump-truck-600nw-2318358075.jpg"
+    },
+    {
+        "categoryName": "Bulldozer",
+        "use": "Heavy-duty equipment used for pushing large quantities of soil, sand, and debris.",
+        "description": "A powerful tracked vehicle equipped with a large, flat blade on the front. Bulldozers are used for pushing large quantities of soil, sand, rubble, or other materials during construction work.",
+        "imageUrl": "https://pngimg.com/uploads/bulldozer/bulldozer_PNG16475.png"
+    },
+    {
+        "categoryName": "Grader",
+        "use": "Used to create a flat surface during grading.",
+        "description": "A machine with a long blade used to create a flat surface during the grading process. Motor graders are commonly used for road construction and maintenance.",
+        "imageUrl": "https://cdn.bookingtimes.com/Common/LoadImage?Id=15093&v=1"
+    },
+    {
+        "categoryName": "Compactor",
+        "use": "Smaller equipment used for compacting soil and gravel in smaller areas.",
+        "description": "A machine used to compact soil, gravel, concrete, or asphalt in the construction of roads and foundations. It typically has a large, cylindrical steel drum that rolls over the material to compact it.",
+        "imageUrl": "https://www.wirtgen-group.com/media/04_hamm/01_bilder_3/news_und_jobreports/2023/ha_pm_2023_conexpo_hc_/ha-news-2023-conexpo-hc-stage_1680x945.jpg"
+    },
+    {
+        "categoryName": "Excavator",
+        "use": "Used for digging trenches, holes, and foundations.",
+        "description": "A heavy-duty machine with a long arm (boom) and a bucket attached to a pivoting cab that sits on tracks or wheels. It is primarily used for digging trenches, holes, and foundations, but can also be used for material handling, demolition, and dredging.",
+        "imageUrl": "https://www.shantui.net/uploads/SE205W.jpg"
+    },
+    {
+        "categoryName": "Crane",
+        "use": "Used to lift and move heavy materials vertically and horizontally.",
+        "description": "A machine equipped with cables and pulleys, used to lift and move heavy materials. Cranes are essential for construction work involving lifting heavy objects to higher levels or moving them across a site.",
+        "imageUrl": "https://sanyglobal-img.sany.com.cn/product/goods/20200902/Truck-mounted%20c-174645.jpg?x-oss-process=image/format,webp"
+    },
+    {
+        "categoryName": "Scraper",
+        "use": "Used for earthmoving over short distances; they scoop, haul, and deposit soil.",
+        "description": "A large machine used for earthmoving over short distances. It scoops up soil, hauls it to a designated area, and then deposits it. Scrapers are commonly used in large earthmoving projects like road construction.",
+        "imageUrl": "https://s7d2.scene7.com/is/image/Caterpillar/CM20190510-d6b69-8145a?$cc-g$"
+    },
+    {
+        "categoryName": "Concrete mixer (Cement Truck)",
+        "use": "Used to transport and mix concrete.",
+        "description": "A truck equipped with a rotating drum used to mix concrete ingredients and keep the mixture from hardening during transport to a construction site.",
+        "imageUrl": "https://4.imimg.com/data4/LE/CB/MY-11973060/transit-concrete-mixer.jpg"
+    },
+    {
+        "categoryName": "Road Roller",
+        "use": "Used for compacting soil, asphalt, and concrete, typically used in road construction.",
+        "description": "A machine used to compact soil, gravel, concrete, or asphalt in the construction of roads and foundations. It typically has a large, cylindrical steel drum that rolls over the material to compact it.",
+        "imageUrl": "https://5.imimg.com/data5/JE/KD/MY-2694870/tandem-vibratory-road-roller.jpg"
+    },
+    {
+        "categoryName": "Tractor",
+        "use": "Used for pulling or pushing agricultural and construction machinery and trailers.",
+        "description": "A tractor is a powerful engineering vehicle specifically designed to deliver high torque at low speeds, primarily used for hauling or pulling heavy loads. Tractors are versatile machines commonly used in agriculture, construction, and other industries.",
+        "imageUrl": "https://4.imimg.com/data4/KJ/BY/MY-14831048/john-deere-5050d-tractor.jpg"
+    },
+    {
+        "categoryName": "Foundation Drilling Rigs",
+        "use": "Used for driving piles into the soil to provide foundation support for buildings or other structures.",
+        "description": " A machine used to drive piles into the soil to provide foundation support for buildings or other structures. Pile drivers are essential in constructing deep foundations for bridges, skyscrapers, and other large structures.",
+        "imageUrl": "https://static.global-ce.com/upload/upfs/202211/18/f_1668751343215371.jpg"
+    }
+]

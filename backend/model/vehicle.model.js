@@ -44,6 +44,10 @@ const Vehicle = sequelize.define(
       type: DataTypes.STRING(1000),
       allowNull: false,
     },
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
   },
   {
     tableName: "Vehicles",

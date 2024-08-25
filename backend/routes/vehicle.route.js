@@ -33,7 +33,7 @@ router.put("/update",
 );
 
 router.post("/byCategory",
-  body("id", "id is require").notEmpty().isNumeric(),
+  body("id", "id is require").notEmpty(),
   byCategory
 );
 

@@ -14,24 +14,24 @@ function SignUp() {
   const [passworderror, setPassworderror] = useState("  ");
 
   const navigate = useNavigate();
-  const Register = async() => {
-      axios.post('http://localhost:3001/user/signup', { name, email, password })
+  const Register = async () => {
+    axios.post('http://localhost:3001/user/signup', { name, email, password })
       .then(response => {
-          if (response.status === 200) {
-              toast.success("Sign Up Success....");
-              setTimeout(()=>{navigate('/signIn')},2000)
+        if (response.status === 200) {
+          toast.success("Sign Up Success....");
+          setTimeout(() => { navigate('/signIn') }, 2000)
         }
       }).catch(err => {
-        if(err.response.status === 400){
+        if (err.response.status === 400) {
           toast.info('User already exist...');
-        }else
-        toast.error("User internal error...");
+        } else
+          toast.error("User internal error...");
       });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-}
+  }
 
 
   return (
@@ -45,7 +45,7 @@ function SignUp() {
                 <div className="card-body p-md-4">
                   <div className="row justify-content-center">
 
-                    <div className="col-md-10 col-lg-6 col-xl-5 order-1 order-lg-2" style={{ backgroundColor: "#c6cbc9" }}>
+                    <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" style={{ backgroundColor: "#c6cbc9" }}>
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Register</p>
 
                       <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
@@ -79,7 +79,7 @@ function SignUp() {
                         </div>
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          {(nameerror === emailerror && emailerror === passworderror) ? <button className="btn btn-dark"  onClick={() => { Register() }}>Register</button>                                            : <button className="btn btn-secondary" onClick={() => { (name === "") ? setNameerror("name is required") : (email === "") ? setEmailerror("email is required") : (password === "") ? setPassworderror("password is required") : setPassworderror(" ") }}>Register</button>}
+                          {(nameerror === emailerror && emailerror === passworderror) ? <button className="btn btn-dark" onClick={() => { Register() }}>Register</button> : <button className="btn btn-secondary" onClick={() => { (name === "") ? setNameerror("name is required") : (email === "") ? setEmailerror("email is required") : (password === "") ? setPassworderror("password is required") : setPassworderror(" ") }}>Register</button>}
                         </div>
 
                       </form>

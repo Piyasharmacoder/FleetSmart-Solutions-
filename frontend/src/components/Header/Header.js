@@ -1,7 +1,17 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
   const navigate = useNavigate();
+
+  const [user, setuser] = useState(localStorage.getItem("user"));
+
+  function logout() {
+    localStorage.setItem("userid", 0);
+    setuser(0);
+    navigate('/');
+  }
+
   return (<>
     <div className="my-3 py-3"></div>
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-0 m-0 fixed-top">
@@ -22,7 +32,10 @@ function Header() {
               <a className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/contact')}>Contact</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-info" style={{ cursor: "pointer" }} onClick={() => navigate('/signup')}>Login/Signup</a>
+              {(localStorage.getItem("userid") == 0) ?
+                <a className="nav-link text-info" style={{ cursor: "pointer" }} onClick={() => navigate('/signin')}>Login/Signup</a>
+                : <a className="nav-link text-info" style={{ cursor: "pointer" }} onClick={() => { logout() }}>LogOut</a>
+              }
             </li>
           </ul>
         </div>

@@ -1,5 +1,6 @@
 import { validationResult } from "express-validator";
 import Vehicle from "../model/vehicle.model.js";
+import Category from "../model/category.model.js";
 
 export const add = (request, response, next) => {
   const errors = validationResult(request);
@@ -32,9 +33,12 @@ export const saveInBulk = async (request, response, next) => {
     for (let vehicle of vehicleList) {
       let { id, brand, model, rent, description, categoryname, year, registration_number, image } = vehicle;
 
-      await Vehicle.create({
-        id, brand, model, rent, description, categoryname, year, registration_number, image
-      })
+      let vehiclenumber = await Vehicle.findOne({ where: { registration_number } });
+      let category = await Category.findOne({ where: { categoryName: categoryname } });
+      if (!vehiclenumber && category)
+        await Vehicle.create({
+          id, brand, model, rent, description, categoryname, year, registration_number, image
+        })
     }
     return response.status(200).json({ message: "All Vehicles Saved...." });
   } catch (err) {
