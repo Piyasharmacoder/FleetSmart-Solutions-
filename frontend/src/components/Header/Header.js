@@ -1,14 +1,10 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
   const navigate = useNavigate();
 
-  const [user, setuser] = useState(localStorage.getItem("user"));
-
   function logout() {
     localStorage.setItem("userid", 0);
-    setuser(0);
     navigate('/');
   }
 

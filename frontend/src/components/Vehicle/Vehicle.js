@@ -23,13 +23,13 @@ function Vehicle() {
             <div className="container-fluid bg-light pt-3">
                 <h1 className="text-center text-success mt-2">{state}</h1>
                 {vehicles.map((item, index) => <div key={index} className='container py-3'>
-                    <div class="card shadow border">
-                        <div class="row no-gutters">
-                            <div class="col-md-5">
-                                <img class="card-img" src={item.image} alt="Suresh Dasari Card" />
+                    <div className="card shadow border">
+                        <div className="row no-gutters">
+                            <div className="col-md-5">
+                                <img className="card-img" src={item.image} alt="Suresh Dasari Card" />
                             </div>
-                            <div class="col-md-7">
-                                <div class="card-body p-0">
+                            <div className="col-md-7">
+                                <div className="card-body p-0">
                                     <h5 className="card-title m-1">{item.model}</h5>
                                     <h5 className="card-title m-1 fw-bolder">{item.brand}</h5>
                                     <h5 className="card-title m-1">{item.categoryname}</h5>

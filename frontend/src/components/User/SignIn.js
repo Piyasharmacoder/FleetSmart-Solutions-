@@ -48,7 +48,7 @@ function SignIn() {
 
                         <div className="d-flex flex-row align-items-center mb-5">
                           <div data-mdb-input-init className="form-outline flex-fill mb-0">
-                            <label className="form-label" for="form3Example3c"> Your Email</label>
+                            <label className="form-label" htmlFor="form3Example3c"> Your Email</label>
                             <input type="email" onChange={(event) => { (event.target.value === "") ? setEmailerror("email is required") : (!event.target.value.match(/^[^\s@]+@/)) ? setEmailerror("Email must start with valid characters.") : (!event.target.value.match(/@gmail\.com$/)) ? setEmailerror("Email must end with '@gmail.com'.") : setEmailerror(""); setEmail(event.target.value); }} id="form3Example3c" className="form-control" />
                             <small className="text-danger fs-7" >{emailerror}</small>
                           </div>
@@ -56,14 +56,14 @@ function SignIn() {
 
                         <div className="d-flex flex-row align-items-center mb-5">
                           <div data-mdb-input-init className="form-outline flex-fill mb-0">
-                            <label className="form-label" for="form3Example4c">Password</label>
+                            <label className="form-label" htmlFor="form3Example4c">Password</label>
                             <input type="password" onChange={(event) => { (event.target.value === "") ? setPassworderror("password is required") : (!event.target.value.match(/^(?=.*\d)/)) ? setPassworderror("Password must contain at least one digit.") : (!event.target.value.match(/^(?=.*[a-zA-Z])/)) ? setPassworderror("Password must contain at least one letter.") : (!event.target.value.match(/^.{5,}$/)) ? setPassworderror("Password must be at least 5 characters long.") : setPassworderror(""); setPassword(event.target.value); }} id="form3Example4c" className="form-control" />
                             <small className="text-danger fs-7" >{passworderror}</small>
                           </div>
                         </div>
 
                         <div className="form-check d-flex justify-content-center mb-5">
-                          <label className="form-check-label" for="form2Example3">create new account <a href="" onClick={() => navigate('/signup')}> Sign Up</a></label>
+                          <label className="form-check-label" htmlFor="form2Example3">create new account <a href="" onClick={() => navigate('/signup')}> Sign Up</a></label>
                         </div>
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
