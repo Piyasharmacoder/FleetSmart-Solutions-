@@ -7,7 +7,7 @@ function Footer() {
       <footer className="bg-body-tertiary text-center bg-dark text-success">
         <div className="container p-4">
           <section className="container text-secondary ">
-            <img src="footer.png" className="footer-img" height={100}></img><br />Fleet Management System
+            <img src="footer.png" className="footer-img" alt="footer.logo" height={100}></img><br />Fleet Management System
           </section>
 
           <section className="mb-4 text-light">
@@ -24,7 +24,7 @@ function Footer() {
               </div>
 
               <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 className="text-uppercase" style={{ cursor: "pointer" }} onClick={() => navigate('/service')}>Services</h5>
+                <h5 className="text-uppercase" style={{ cursor: "pointer" }} onClick={() => navigate('/')}>Services</h5>
               </div>
 
               <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -35,7 +35,7 @@ function Footer() {
         </div>
         <hr className="m-0 p-0 text-light border" />
         <div className="text-center p-3">
-          <span className="text-light">© 2024 Copyright : </span> <a className="text-reset fw-bold text-light" href="">FleetMaster.com</a>
+          <span className="text-light">© 2024 Copyright : </span> <span className="text-reset fw-bold text-light">FleetMaster.com</span>
         </div>
       </footer>
     </>

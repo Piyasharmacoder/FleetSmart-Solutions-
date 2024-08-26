@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import React, { useState } from 'react';
+import React from 'react';
 
 function Rental() {
     const { state } = useLocation();
-    
+
     const navigate = useNavigate();
     return (
         <>
@@ -31,7 +31,7 @@ function Rental() {
                         <div className="row no-gutters border border-danger">
                             <div className="col-12">
                                 <div className="card-body p-5 d-flex justify-content-around">
-                                    
+
                                 </div>
                             </div>
                         </div>

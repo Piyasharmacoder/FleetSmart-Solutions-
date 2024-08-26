@@ -63,7 +63,7 @@ function SignIn() {
                         </div>
 
                         <div className="form-check d-flex justify-content-center mb-5">
-                          <label className="form-check-label" htmlFor="form2Example3">create new account <a href="" onClick={() => navigate('/signup')}> Sign Up</a></label>
+                          <label className="form-check-label" htmlFor="form2Example3">create new account <a href="/signup" onClick={() => navigate('/signup')}> Sign Up</a></label>
                         </div>
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
@@ -75,7 +75,7 @@ function SignIn() {
                     </div>
 
                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                      <img src="logo.png" className="img-fluid" alt="Sample image" />
+                      <img src="logo.png" className="img-fluid" alt="logo..." />
                     </div>
 
                   </div>

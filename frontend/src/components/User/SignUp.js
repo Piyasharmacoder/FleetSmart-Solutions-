@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -75,7 +75,7 @@ function SignUp() {
                         </div>
 
                         <div className="form-check d-flex justify-content-center mb-4">
-                          <label className="form-check-label" htmlFor="form2Example3">you have already account <a href="" onClick={() => navigate('/signin')}> Sign In</a></label>
+                          <label className="form-check-label" htmlFor="form2Example3">you have already account <a href="signin" onClick={() => navigate('/signin')}> Sign In</a></label>
                         </div>
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
@@ -87,7 +87,7 @@ function SignUp() {
                     </div>
 
                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                      <img src="logo.png" className="img-fluid" alt="Sample image" />
+                      <img src="logo.png" className="img-fluid" alt="logo...." />
                     </div>
 
                   </div>
