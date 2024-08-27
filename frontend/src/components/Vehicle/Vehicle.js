@@ -10,7 +10,7 @@ function Vehicle() {
     useEffect(() => {
         axios.post('http://localhost:3001/vehicle/byCategory', { categoryName: state })
             .then(response => {
-                setVehicles(response.data.productList)
+                setVehicles(response.data.vehicleList)
             }).catch(err => {
                 console.log(err);
             })

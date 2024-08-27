@@ -1,6 +1,7 @@
 import { validationResult } from "express-validator";
 import Vehicle from "../model/vehicle.model.js";
 import Category from "../model/category.model.js";
+import Vendor from "../model/vendor.model.js";
 
 export const add = (request, response, next) => {
   const errors = validationResult(request);
@@ -112,15 +113,21 @@ export const list = (request, response, next) => {
 };
 
 export const byCategory = (request, response, next) => {
-  Vehicle.findAll({ where: { categoryname: request.body.categoryName } })
-    .then(result => {
-      if (result[0])
-        return response.status(200).json({ productList: result })
-      return response.status(401).json({ error: "Unauthorized request" });
-    }).catch(err => {
-      return response.status(500).json({ error: "Internal Server Error", err });
-    })
-}
+  Vehicle.findAll({
+    where: { categoryname: request.body.categoryName },
+    include: [{ model: Vendor, as: "vendor" }] // Include associated Vendor
+  })
+  .then(result => {
+    if (result.length > 0)
+      return response.status(200).json({ vehicleList: result });
+    else
+      return response.status(404).json({ error: "No vehicles found for the specified category" });
+  })
+  .catch(err => {
+    console.error(err);
+    return response.status(500).json({ error: "Internal Server Error", err });
+  });
+};
 
 export const remove = (request, response, next) => {
   const errors = validationResult(request);

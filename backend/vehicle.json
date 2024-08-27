@@ -7,7 +7,8 @@
         "categoryname": "Backhoe",
         "year": "2015",
         "registration_number": "MP 09 AC 2201",
-        "image": "https://preview.thenewsmarket.com/Previews/CNHA/StillAssets/1920x1080/460718.png"
+        "image": "https://preview.thenewsmarket.com/Previews/CNHA/StillAssets/1920x1080/460718.png",
+        "vendorId": "1"
     },
     {
         "brand": "Caterpillar",
@@ -17,7 +18,8 @@
         "categoryname": "Bulldozer",
         "year": "2018",
         "registration_number": "UP 32 BK 1234",
-        "image": "https://a-us.storyblok.com/f/1005140/6000x4000/7d9859592d/zac-edmonds-n1lbcqlp9ec-unsplash.jpg/m/800x500"
+        "image": "https://a-us.storyblok.com/f/1005140/6000x4000/7d9859592d/zac-edmonds-n1lbcqlp9ec-unsplash.jpg/m/800x500",
+        "vendorId": "2"
     },
     {
         "brand": "Bomag",
@@ -27,7 +29,8 @@
         "categoryname": "Compactor",
         "year": "2016",
         "registration_number": "KA 05 MG 5678",
-        "image": "https://lectura.press/media-storage/press_releases/cm20201211_7766d_836e6(2cb).jpg"
+        "image": "https://lectura.press/media-storage/press_releases/cm20201211_7766d_836e6(2cb).jpg",
+        "vendorId": "3"
     },
     {
         "brand": "Schwing Stetter",
@@ -37,7 +40,8 @@
         "categoryname": "Concrete Mixer",
         "year": "2019",
         "registration_number": "DL 01 XL 3456",
-        "image": "https://www.heavyequipments.in//uploads/equipment/thumbs/used-schwing-stetter-transit-mixer-in-jaisalmer-rajasthan-used-ashok-leyland-transit-for-sale-he-1648-1562835920.webp"
+        "image": "https://www.heavyequipments.in//uploads/equipment/thumbs/used-schwing-stetter-transit-mixer-in-jaisalmer-rajasthan-used-ashok-leyland-transit-for-sale-he-1648-1562835920.webp",
+        "vendorId": "4"
     },
     {
         "brand": "Liebherr",
@@ -47,7 +51,8 @@
         "categoryname": "Crane",
         "year": "2017",
         "registration_number": "TN 11 ZY 7890",
-        "image": "https://www.heavyquipmag.com/wp-content/uploads/2020/05/41439-CT-15-1.jpg"
+        "image": "https://www.heavyquipmag.com/wp-content/uploads/2020/05/41439-CT-15-1.jpg",
+        "vendorId": "5"
     },
     {
         "brand": "Volvo",
@@ -57,7 +62,8 @@
         "categoryname": "Dump Truck",
         "year": "2020",
         "registration_number": "MH 12 AB 1234",
-        "image": "https://5.imimg.com/data5/SELLER/Default/2022/10/EN/CX/EK/12466490/heavy-dump-truck-rental-service-500x500.jpeg"
+        "image": "https://5.imimg.com/data5/SELLER/Default/2022/10/EN/CX/EK/12466490/heavy-dump-truck-rental-service-500x500.jpeg",
+        "vendorId": "1"
     },
     {
         "brand": "Komatsu",
@@ -67,7 +73,8 @@
         "categoryname": "Excavator",
         "year": "2018",
         "registration_number": "GJ 06 CC 5678",
-        "image": "https://cdn.sanity.io/images/agnoplrn/production/f7854fedd1a40f3f9b94c45621ebaa5acb53e537-6720x4480.jpg?rect=0,485,6720,3511&w=1200&h=627&fit=crop&auto=format"
+        "image": "https://cdn.sanity.io/images/agnoplrn/production/f7854fedd1a40f3f9b94c45621ebaa5acb53e537-6720x4480.jpg?rect=0,485,6720,3511&w=1200&h=627&fit=crop&auto=format",
+        "vendorId": "2"
     },
     {
         "brand": "John Deere",
@@ -77,7 +84,8 @@
         "categoryname": "Grader",
         "year": "2019",
         "registration_number": "RJ 14 FK 9101",
-        "image": "https://img.equipmentworld.com/files/base/randallreilly/all/image/2016/09/eqw.Caterpillar-14M3-motor-grader-2.png?auto=format%2Ccompress&fit=max&q=70&w=1200"
+        "image": "https://img.equipmentworld.com/files/base/randallreilly/all/image/2016/09/eqw.Caterpillar-14M3-motor-grader-2.png?auto=format%2Ccompress&fit=max&q=70&w=1200",
+        "vendorId": "3"
     },
     {
         "brand": "CASE",
@@ -87,7 +95,8 @@
         "categoryname": "Road Roller",
         "year": "2015",
         "registration_number": "PB 10 LM 1213",
-        "image": "https://res.cloudinary.com/dsfzcj5qk/image/upload/v1615480487/road-rollers/double-drum.jpg"
+        "image": "https://res.cloudinary.com/dsfzcj5qk/image/upload/v1615480487/road-rollers/double-drum.jpg",
+        "vendorId": "4"
     },
     {
         "brand": "Caterpillar",
@@ -97,7 +106,8 @@
         "categoryname": "Scraper",
         "year": "2016",
         "registration_number": "CH 01 AN 1314",
-        "image": "https://blog.iseekplant.com.au/hubfs/Imported_Blog_Media/Scraper%20for%20Hire%20Australia-3.png"
+        "image": "https://blog.iseekplant.com.au/hubfs/Imported_Blog_Media/Scraper%20for%20Hire%20Australia-3.png",
+        "vendorId": "5"
     },
     {
         "brand": "Mahindra",
@@ -107,7 +117,8 @@
         "categoryname": "Tractor",
         "year": "2021",
         "registration_number": "HR 26 CT 1415",
-        "image": "https://media.sandhills.com/img.axd?id=7266646292&wid=4326182721&rwl=False&p=&ext=&w=350&h=220&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=kHRnD0kLuFGPa63ZrgryAmwTsiXRgX%2Ba3nac8dtIDBQ%3D"
+        "image": "https://media.sandhills.com/img.axd?id=7266646292&wid=4326182721&rwl=False&p=&ext=&w=350&h=220&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=kHRnD0kLuFGPa63ZrgryAmwTsiXRgX%2Ba3nac8dtIDBQ%3D",
+        "vendorId": "1"
     },
     {
         "brand": "Hitachi",
@@ -117,7 +128,8 @@
         "categoryname": "Excavator",
         "year": "2017",
         "registration_number": "WB 20 FX 9876",
-        "image": "https://www.topmarkfunding.com/wp-content/uploads/2022/03/excavator_1-1024x768-1024x585.jpg"
+        "image": "https://www.topmarkfunding.com/wp-content/uploads/2022/03/excavator_1-1024x768-1024x585.jpg",
+        "vendorId": "2"
     },
     {
         "brand": "Komatsu",
@@ -127,7 +139,8 @@
         "categoryname": "Bulldozer",
         "year": "2019",
         "registration_number": "KL 07 PK 7894",
-        "image": "https://acropolis-wp-content-uploads.s3.us-west-1.amazonaws.com/bulldozer-digging-construction-dirt-worksite-1.webp"
+        "image": "https://acropolis-wp-content-uploads.s3.us-west-1.amazonaws.com/bulldozer-digging-construction-dirt-worksite-1.webp",
+        "vendorId": "3"
     },
     {
         "brand": "Dynapac",
@@ -137,7 +150,8 @@
         "categoryname": "Compactor",
         "year": "2018",
         "registration_number": "TS 08 NM 3245",
-        "image": "https://albahar-sem.com/wp-content/uploads/2022/05/71_SEM_SC_Blog_inner-page-image.jpg"
+        "image": "https://albahar-sem.com/wp-content/uploads/2022/05/71_SEM_SC_Blog_inner-page-image.jpg",
+        "vendorId": "4"
     },
     {
         "brand": "Sany",
@@ -147,7 +161,8 @@
         "categoryname": "Excavator",
         "year": "2020",
         "registration_number": "OR 13 BR 5672",
-        "image": "https://www.wesgroupequipment.com/media/images/da307df73c1e49a797b2064d26c6f803.width-955.jpg"
+        "image": "https://www.wesgroupequipment.com/media/images/da307df73c1e49a797b2064d26c6f803.width-955.jpg",
+        "vendorId": "1"
     },
     {
         "brand": "Volvo",
@@ -157,7 +172,8 @@
         "categoryname": "Excavator",
         "year": "2021",
         "registration_number": "UP 15 AD 6743",
-        "image": "https://s7d2.scene7.com/is/image/Caterpillar/CM20200902-133f5-390aa"
+        "image": "https://s7d2.scene7.com/is/image/Caterpillar/CM20200902-133f5-390aa",
+        "vendorId": "5"
     },
     {
         "brand": "John Deere",
@@ -167,7 +183,8 @@
         "categoryname": "Dump Truck",
         "year": "2018",
         "registration_number": "CG 04 KJ 8745",
-        "image": "https://s.wsj.net/public/resources/images/EM-BB794_DAIMTR_GR_20140921123157.jpg"
+        "image": "https://s.wsj.net/public/resources/images/EM-BB794_DAIMTR_GR_20140921123157.jpg",
+        "vendorId": "4"
     },
     {
         "brand": "Liebherr",
@@ -177,7 +194,8 @@
         "categoryname": "Bulldozer",
         "year": "2020",
         "registration_number": "JK 02 LM 9912",
-        "image": "https://media.istockphoto.com/id/636021590/photo/earth-mover-in-a-new-highway-construction-s3-poland.jpg?s=612x612&w=0&k=20&c=JjYo1TJt9zFeVxPLNcU5iWSZncT_ug5PvEgjhbCmobk="
+        "image": "https://media.istockphoto.com/id/636021590/photo/earth-mover-in-a-new-highway-construction-s3-poland.jpg?s=612x612&w=0&k=20&c=JjYo1TJt9zFeVxPLNcU5iWSZncT_ug5PvEgjhbCmobk=",
+        "vendorId": "3"
     },
     {
         "brand": "XCMG",
@@ -187,6 +205,7 @@
         "categoryname": "Grader",
         "year": "2020",
         "registration_number": "GA 01 WP 6789",
-        "image": "https://5.imimg.com/data5/BP/XM/VC/SELLER-2978548/caterpillar-120k2-motor-grader-rental-service.jpg"
+        "image": "https://5.imimg.com/data5/BP/XM/VC/SELLER-2978548/caterpillar-120k2-motor-grader-rental-service.jpg",
+        "vendorId": "2"
     }
 ]
