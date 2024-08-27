@@ -16,6 +16,7 @@ export const add = (request, response, next) => {
     year: request.body.year,
     registration_number: request.body.registration_number,
     image: request.body.image,
+    vendorId: request.body.vendorId,
   })
     .then((result) => {
       return response.status(200).json({ message: "Vehicle Saved...." });
@@ -31,13 +32,13 @@ export const saveInBulk = async (request, response, next) => {
     let vehicleList = request.body;
 
     for (let vehicle of vehicleList) {
-      let { id, brand, model, rent, description, categoryname, year, registration_number, image } = vehicle;
+      let { id, brand, model, rent, description, categoryname, year, registration_number, image, vendorId } = vehicle;
 
       let vehiclenumber = await Vehicle.findOne({ where: { registration_number } });
       let category = await Category.findOne({ where: { categoryName: categoryname } });
       if (!vehiclenumber && category)
         await Vehicle.create({
-          id, brand, model, rent, description, categoryname, year, registration_number, image
+          id, brand, model, rent, description, categoryname, year, registration_number, image, vendorId
         })
     }
     return response.status(200).json({ message: "All Vehicles Saved...." });
@@ -61,6 +62,7 @@ export const update = (request, response, next) => {
       year: request.body.year,
       registration_number: request.body.registration_number,
       image: request.body.image,
+      vendorId: request.body.vendorId,
     },
     {
       where: { id: request.body.id },

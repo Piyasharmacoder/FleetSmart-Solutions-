@@ -3,11 +3,15 @@ import Rental from "./rental.model.js";
 import RentalItems from "./rentalitems.model.js";
 import User from "./user.model.js";
 import Vehicle from "./vehicle.model.js";
+import Vendor from "./vendor.model.js";
 console.log("Association Executed.......");
 
 //category
 Category.hasMany(Vehicle, { foreignKey: "categoryname" });
 Vehicle.belongsTo(Category, { foreignKey: "categoryname" });
+
+Vendor.hasMany(Vehicle, { foreignKey: "vendorId", as: "vehicles" });
+Vehicle.belongsTo(Vendor, { foreignKey: "vendorId", as: "vendor" });
 
 // Category.hasMany(HomeRemedy, { foreignKey: "categoryname" });
 // HomeRemedy.belongsTo(Category, { foreignKey: "categoryname", targetKey: "categoryName" });

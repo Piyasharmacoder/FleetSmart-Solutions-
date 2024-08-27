@@ -14,6 +14,7 @@ router.post("/add",
   body("year", "year is require").notEmpty(),
   body("registration_number", "registration_number is require").notEmpty(),
   body("image", "image is require").notEmpty(),
+  body("vendorId", "vendorId is require").notEmpty(),
   add
 );
 
@@ -28,6 +29,7 @@ router.put("/update",
   body("year", "year is require").notEmpty(),
   body("registration_number", "registration_number is require").notEmpty(),
   body("image", "image is require").notEmpty(),
+  body("vendorId", "image is vendorId").notEmpty(),
   body("id", "id is require").notEmpty().isNumeric(),
   update
 );

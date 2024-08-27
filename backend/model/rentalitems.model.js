@@ -7,19 +7,34 @@ const RentalItems = sequelize.define("RentalItems", {
         primaryKey: true,
         autoIncrement: true
     },
-    quantity: {
+    work: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    work_place: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+    time: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 1
+    },
+    contactNumber: {
+        type: DataTypes.STRING,
+        allowNull: false,
     }
 });
 
 RentalItems.sync()
     .then((result) => {
-        console.log("rental table created successfully");
+        console.log("RentalItems table created successfully");
     })
     .catch((err) => {
-        console.log("error in created table", err);
+        console.log("Error in creating table", err);
     });
 
 export default RentalItems;

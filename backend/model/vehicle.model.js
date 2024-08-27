@@ -2,6 +2,7 @@ import { DataTypes } from "sequelize";
 import sequelize from "../db/dbconfig.js";
 import Rental from "./rental.model.js";
 import RentalItems from "./rentalitems.model.js";
+import Vendor from "./vendor.model.js";
 
 const Vehicle = sequelize.define(
   "Vehicle",
@@ -48,6 +49,14 @@ const Vehicle = sequelize.define(
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
+    vendorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Vendor, // references the Vendor model
+        key: "id",
+      },
+    },
   },
   {
     tableName: "Vehicles",
@@ -66,7 +75,7 @@ sequelize
     console.log(err);
   });
 
-Rental.belongsToMany(Vehicle, { through: RentalItems })
-Vehicle.belongsToMany(Rental, { through: RentalItems })
+Rental.belongsToMany(Vehicle, { through: RentalItems });
+Vehicle.belongsToMany(Rental, { through: RentalItems });
 
 export default Vehicle;

@@ -57,7 +57,7 @@ function Home() {
                 <div className="row justify-content-xl-center bg-transparent">
                   <div className="col-12 col-xl-10 bg-transparent z-5">
                     <h2 className="mb-3">Why Choose Us?</h2>
-                    <p className="lead fs-4 mb-3 mb-xl-5">With years of experience and deep industry knowledge, we have a proven track record of success and are constantly pushing ourselves to stay ahead of the curve.</p>
+                    <p className="lead fs-4 mb-3 mb-xl-5">A Fleet Management System enhances efficiency, reduces costs, and improves safety by providing real-time tracking, maintenance scheduling, and data-driven insights, making it essential for effective fleet operations.</p>
                     <div className="d-flex align-items-center mb-3">
                       <div className="me-3 text-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="text-success bi bi-check-circle-fill" viewBox="0 0 16 16">

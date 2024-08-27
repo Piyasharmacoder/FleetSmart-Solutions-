@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import UserRouter from "./routes/user.route.js";
 import RentalRouter from "./routes/rental.route.js";
 import VehicleRouter from "./routes/vehicle.route.js";
+import VendorRouter from "./routes/vendor.route.js";
 import CategoryRouter from "./routes/category.route.js";
 import "./model/association.js";
 import cors from "cors";
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/user", UserRouter);
 app.use("/rental", RentalRouter);
 app.use("/vehicle", VehicleRouter);
+app.use("/vendor", VendorRouter);
 app.use("/category", CategoryRouter);
 
 app.use((request, response) => {

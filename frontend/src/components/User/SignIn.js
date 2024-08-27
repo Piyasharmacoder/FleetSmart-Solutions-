@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -12,9 +12,10 @@ function SignIn() {
   const [passworderror, setPassworderror] = useState("  ");
 
   const navigate = useNavigate();
+  const {state} = useLocation();
 
   const signin = () => {
-    axios.post('http://localhost:3001/user/signin', { email, password })
+    axios.post(`http://localhost:3001/${state}/signin`, { email, password })
       .then(response => {
         if (response.status === 200) {
           toast.success("Sign In Success....");
@@ -63,7 +64,7 @@ function SignIn() {
                         </div>
 
                         <div className="form-check d-flex justify-content-center mb-5">
-                          <label className="form-check-label" htmlFor="form2Example3">create new account <a href="/signup" onClick={() => navigate('/signup')}> Sign Up</a></label>
+                          <label className="form-check-label" htmlFor="form2Example3">create new account <a href="/signup" onClick={() => navigate('/signup',{state:state})}> Sign Up</a></label>
                         </div>
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

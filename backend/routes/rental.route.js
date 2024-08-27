@@ -1,5 +1,5 @@
 import express from "express";
-import { addToRental, fetchRentalItems, removeFromRental, update, } from "../controller/rental.controller.js";
+import { addToRental, fetchRentalItems, removeFromRental } from "../controller/rental.controller.js";
 import { body } from "express-validator";
 
 const router = express.Router();
@@ -7,7 +7,11 @@ const router = express.Router();
 router.post("/add",
   body("userId", "invalid userId").notEmpty(),
   body("VehicleId", "invalid vehicleId").notEmpty(),
-  body("quantity", "invalid quantity").notEmpty(),
+  body("work", "invalid work").notEmpty(),
+  body("work_place", "invalid  work_place").notEmpty(),
+  body("date", "invalid date").notEmpty(),
+  body("time", "invalid time").notEmpty(),
+  body("contactNumber", "invalid contactNumber").notEmpty(),
   addToRental
 );
 
@@ -21,7 +25,5 @@ router.delete("/removeRentalItems",
   body("VehicleId", "invalid vehicleId").notEmpty(),
   removeFromRental
 );
-
-router.put("/update", update);
 
 export default router;

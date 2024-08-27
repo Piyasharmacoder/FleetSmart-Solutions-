@@ -17,7 +17,7 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="mynavbar">
-          <ul className="navbar-nav gap-3 w-100 d-flex justify-content-end">
+          <ul className="navbar-nav gap-3 w-100 d-flex justify-content-end pe-2">
             <li className="nav-item">
               <p className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/')}>Home</p>
             </li>
@@ -29,7 +29,16 @@ function Header() {
             </li>
             <li className="nav-item">
               {(localStorage.getItem("userid") * 1 === 0) ?
-                <p className="nav-link text-info" style={{ cursor: "pointer" }} onClick={() => navigate('/signin')}>Login/Signup</p>
+                  <div className="dropdown">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownmenu" data-bs-toggle="dropdown" aria-expanded="false">
+                      LogIn
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownmenu">
+                      <span className="dropdown-item" style={{ cursor: "pointer" }} onClick={() => navigate('/signin',{state:"user"})}>User</span>
+                      <hr className="dropdown-divider"/>
+                      <span className="dropdown-item" style={{ cursor: "pointer" }} onClick={() => navigate('/signin',{state:"vendor"})}>Vendor</span>
+                    </div>
+                  </div>
                 : <p className="nav-link text-info" style={{ cursor: "pointer" }} onClick={() => { logout() }}>LogOut</p>
               }
             </li>

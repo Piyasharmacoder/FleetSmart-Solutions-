@@ -14,6 +14,7 @@ export const signUp = async (request, response, next) => {
       name: request.body.name,
       email: request.body.email,
       password: request.body.password,
+      contactNumber: request.body.contactNumber,
     })
       .then((result) => {
         return response.status(200).json({ data: result.dataValues, message: "User created..." });
@@ -57,6 +58,7 @@ export const update = (request, response, next) => {
       name: request.body.name,
       email: request.body.email,
       password: request.body.password,
+      contactNumber: request.body.contactNumber,
     },
     {
       where: { id: request.body.id },

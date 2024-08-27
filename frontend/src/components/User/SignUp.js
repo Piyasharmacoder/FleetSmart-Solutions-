@@ -2,29 +2,35 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {useNavigate } from "react-router-dom";
+import {useLocation, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [contactNumber, setContactNumber] = useState("");
+  
   const [nameerror, setNameerror] = useState(" ");
   const [emailerror, setEmailerror] = useState(" ");
   const [passworderror, setPassworderror] = useState("  ");
+  const [contactNumbererror, setContactNumbererror] = useState("    ");
+
+  const {state} = useLocation();
 
   const navigate = useNavigate();
   const Register = async () => {
-    axios.post('http://localhost:3001/user/signup', { name, email, password })
+    axios.post(`http://localhost:3001/${state}/signup`, { name, email, password, contactNumber })
       .then(response => {
         if (response.status === 200) {
           toast.success("Sign Up Success....");
-          setTimeout(() => { navigate('/signIn') }, 2000)
+          setTimeout(() => { navigate('/signIn',{state:state}) }, 2000)
         }
       }).catch(err => {
         if (err.response.status === 400) {
           toast.info('User already exist...');
         } else
+        console.log(err);
+        
           toast.error("User internal error...");
       });
   };
@@ -74,12 +80,20 @@ function SignUp() {
                           </div>
                         </div>
 
+                        <div className="d-flex flex-row align-items-center mb-3">
+                          <div data-mdb-input-init className="form-outline flex-fill mb-0">
+                            <label className="form-label" htmlFor="form3Example5c">ContactNumber</label>
+                            <input type="tel" onChange={(event) => { (event.target.value === "") ? setContactNumbererror("number is required") : (!event.target.value.match(/^[0-9]+$/)) ? setContactNumbererror("Number must contain only digits.") : (!event.target.value.match(/^\d{10}$/)) ? setContactNumbererror("Number must only 10 digits.") : setContactNumbererror(""); setContactNumber(event.target.value); }} id="form3Example5c" className="form-control" />
+                            <small className="text-danger fs-7" >{contactNumbererror}</small>
+                          </div>
+                        </div>
+
                         <div className="form-check d-flex justify-content-center mb-4">
                           <label className="form-check-label" htmlFor="form2Example3">you have already account <a href="signin" onClick={() => navigate('/signin')}> Sign In</a></label>
                         </div>
 
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          {(nameerror === emailerror && emailerror === passworderror) ? <button className="btn btn-dark" onClick={() => { Register() }}>Register</button> : <button className="btn btn-secondary" onClick={() => { (name === "") ? setNameerror("name is required") : (email === "") ? setEmailerror("email is required") : (password === "") ? setPassworderror("password is required") : setPassworderror(" ") }}>Register</button>}
+                          {(nameerror === emailerror && emailerror === passworderror && passworderror === contactNumbererror) ? <button className="btn btn-dark" onClick={() => { Register() }}>Register</button> : <button className="btn btn-secondary" onClick={() => { (name === "") ? setNameerror("name is required") : (email === "") ? setEmailerror("email is required") : (password === "") ? setPassworderror("password is required") :(contactNumber === "") ? setContactNumbererror("Contactnumber is required") : setContactNumbererror(" ") }}>Register</button>}
                         </div>
 
                       </form>

@@ -11,7 +11,7 @@ export const addToRental = async (request, response, next) => {
         if (!errors.isEmpty())
             return response.status(401).json({ error: "Bad request...", errors });
 
-        let { userId, VehicleId, quantity } = request.body;
+        let { userId, VehicleId, work, work_place, date, time, contactNumber } = request.body;
         let rental = await Rental.findOne({ where: { userId: userId } });
 
         if (rental) {
@@ -19,7 +19,7 @@ export const addToRental = async (request, response, next) => {
             if (isExists)
                 return response.status(401).json({ message: "Vehicle is already added in rental" });
 
-            await RentalItems.create({ rentalId: rental.id, VehicleId, quantity }, { transaction });
+            await RentalItems.create({ rentalId: rental.id, VehicleId, VehicleId, work, work_place, date, time, contactNumber }, { transaction });
             Vehicle.update({ active: false }, { where: { id: VehicleId } })
             await transaction.commit();
             return response.status(200).json({ message: 'Vehicle successfully added into rental' });
@@ -28,11 +28,10 @@ export const addToRental = async (request, response, next) => {
             rental = await Rental.create({ userId: userId * 1 }, { transaction })
                 .then(result => { return result.dataValues });
 
-            await RentalItems.create({ rentalId: rental.id, VehicleId, quantity }, { transaction });
-            console.log("call", userId)
-            Vehicle.update({ active: false }, { where: { id: VehicleId } })
-            await transaction.commit();
-            return response.status(200).json({ message: 'Vehicle successfully added into rental' });
+                await RentalItems.create({ rentalId: rental.id, VehicleId, VehicleId, work, work_place, date, time, contactNumber }, { transaction });
+                Vehicle.update({ active: false }, { where: { id: VehicleId } })
+                await transaction.commit();
+                return response.status(200).json({ message: 'Vehicle successfully added into rental' });
         }
     }
     catch (err) {
@@ -79,23 +78,3 @@ export const removeFromRental = async (request, response, next) => {
         return response.status(401).json({ message: "unautherized request......", });
     }
 }
-
-export const update = async (req, res, next) => {
-    let { VehicleId, quantity, userId } = req.body;
-    try {
-        const rental = await Rental.findOne({ where: { userId } });
-        console.log(rental.id, VehicleId * 1);
-
-        if (!rental) {
-            return res.status(404).json({ message: "Rental not found" });
-        }
-        const updatedItems = await RentalItems.update(
-            { quantity: quantity },
-            { where: { rentalId: rental.id, VehicleId: VehicleId * 1 } }
-        );
-        return res.status(200).json({ message: "Quantity updated successfully", updatedItems });
-    } catch (err) {
-        console.error(err);
-        return res.status(500).json({ message: "Something went wrong" });
-    }
-};
