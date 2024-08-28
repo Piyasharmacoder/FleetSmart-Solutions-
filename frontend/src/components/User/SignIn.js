@@ -15,14 +15,16 @@ function SignIn() {
   const {state} = useLocation();
 
   const signin = () => {
-    axios.post(`http://localhost:3001/${state}/signin`, { email, password })
+    axios.post(`${process.env.REACT_APP_API_URL}${state}/signin`, { email, password })
       .then(response => {
         if (response.status === 200) {
+          localStorage.setItem('token',response.data.token);
           toast.success("Sign In Success....");
-          localStorage.setItem('userid', 1);
+          localStorage.setItem('userid', response.data.user.id);
           setTimeout(() => { navigate('/') }, 2000)
         }
       }).catch(err => {
+        console.log(err);
         toast.info("User is not Exist...");
       });
   };

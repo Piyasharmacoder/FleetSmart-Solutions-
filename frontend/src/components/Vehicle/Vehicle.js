@@ -8,7 +8,7 @@ function Vehicle() {
     const { state } = useLocation();
 
     useEffect(() => {
-        axios.post('http://localhost:3001/vehicle/byCategory', { categoryName: state })
+        axios.post(process.env.React_APP_SECRET_KEY_VehicleByCategory, { categoryName: state })
             .then(response => {
                 setVehicles(response.data.vehicleList)
             }).catch(err => {

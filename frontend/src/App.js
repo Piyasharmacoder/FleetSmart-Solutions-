@@ -3,12 +3,10 @@ import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header.js";
 import Footer from "./components/Footer/Footer.js";
-
 import SignUp from "./components/User/SignUp.js";
 import SignIn from "./components/User/SignIn.js";
-import Vehicle from "./components/Vehicle/Vehicle.js";
-import Rental from "./components/Rental/Rental.js";
-
+const Vehicle = lazy(() => import("./components/Vehicle/Vehicle.js"));
+const Rental = lazy(() => import("./components/Rental/Rental.js"));
 const Home = lazy(() => import("./components/Home/Home.js"));
 const About = lazy(() => import("./components/About/About.js"));
 const Contact = lazy(() => import("./components/Contact/Contact.js"));

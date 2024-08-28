@@ -19,7 +19,7 @@ function SignUp() {
 
   const navigate = useNavigate();
   const Register = async () => {
-    axios.post(`http://localhost:3001/${state}/signup`, { name, email, password, contactNumber })
+    axios.post(`${process.env.REACT_APP_API_URL}${state}/signup`, { name, email, password, contactNumber })
       .then(response => {
         if (response.status === 200) {
           toast.success("Sign Up Success....");
@@ -29,8 +29,7 @@ function SignUp() {
         if (err.response.status === 400) {
           toast.info('User already exist...');
         } else
-        console.log(err);
-        
+          console.log(err);
           toast.error("User internal error...");
       });
   };

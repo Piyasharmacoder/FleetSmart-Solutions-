@@ -8,7 +8,7 @@ function Home() {
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/category/list')
+    axios.get(process.env.React_APP_SECRET_KEY_CategoryList)
       .then(response => {
         setCategory(response.data.categories)
       }).catch(err => {
