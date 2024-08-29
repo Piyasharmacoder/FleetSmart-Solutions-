@@ -29,6 +29,11 @@ function Header() {
               <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/contact')}>Contact</span>
             </li>
             <li className="nav-item">
+            {(localStorage.getItem("userid") * 1 === 0) ? "" :
+              <span className="btn btn-outline-success nav-link" style={{ cursor: "pointer",}} onClick={() => {navigate('bookings')}}>My Bookings</span>
+            }
+            </li>
+            <li className="nav-item">
               {(localStorage.getItem("userid") * 1 === 0) ?
                   <div className="dropdown m-0 p-0">
                     <button className="btn btn-success dropdown-toggle" type="button" id="dropdownmenu" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,7 +45,7 @@ function Header() {
                       <span className="dropdown-item" style={{ cursor: "pointer" }} onClick={() => navigate('/signin',{state:"vendor"})}>Vendor</span>
                     </div>
                   </div>
-                : <span className="nav-link text-info" style={{ cursor: "pointer" }} onClick={() => { logout() }}>LogOut</span>
+                : <span className="btn btn-outline-info nav-link" style={{ cursor: "pointer" }} onClick={() => { logout() }}>LogOut</span>
               }
             </li>
           </ul>

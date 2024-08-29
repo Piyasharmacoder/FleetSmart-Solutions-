@@ -5,6 +5,7 @@ import Header from "./components/Header/Header.js";
 import Footer from "./components/Footer/Footer.js";
 import SignUp from "./components/User/SignUp.js";
 import SignIn from "./components/User/SignIn.js";
+import Bookings from "./components/Rental/Bookings.js";
 const Vehicle = lazy(() => import("./components/Vehicle/Vehicle.js"));
 const Rental = lazy(() => import("./components/Rental/Rental.js"));
 const Home = lazy(() => import("./components/Home/Home.js"));
@@ -41,6 +42,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/vehicle" element={<Vehicle />} />
             <Route path="/rental" element={<Rental />} />
+            <Route path="/bookings" element={<Bookings />} />
           </Routes>
           <Footer />
         </Suspense>

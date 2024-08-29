@@ -11,7 +11,6 @@ router.post("/add",
   body("work_place", "invalid  work_place").notEmpty(),
   body("date", "invalid date").notEmpty(),
   body("time", "invalid time").notEmpty(),
-  body("contactNumber", "invalid contactNumber").notEmpty(),
   addToRental
 );
 
