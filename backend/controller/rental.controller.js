@@ -93,6 +93,7 @@ export const fetchRentalItems = (request, response, next) => {
     });
 };
 
+
 export const removeFromRental = async (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())

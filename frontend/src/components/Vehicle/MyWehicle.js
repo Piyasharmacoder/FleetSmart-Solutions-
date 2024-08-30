@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 const MyVehicle = () => {
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const vendorId = localStorage.getItem('vendorId')|1;
+  const vendorId = localStorage.getItem('vendorid');
 
   useEffect(() => {
     axios.post("http://localhost:3001/vehicle/byvendorid", { vendorId: vendorId })

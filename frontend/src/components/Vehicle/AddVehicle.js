@@ -13,7 +13,7 @@ const AddVehicle = () => {
     year: "",
     registration_number: "",
     image: "",
-    vendorId: "",
+    vendorId: localStorage.getItem('vendorid'),
   });
   const [error, setError] = useState(null);
 
@@ -172,17 +172,6 @@ const AddVehicle = () => {
               className="form-control"
               name="image"
               value={vehicle.image}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group my-2">
-            <label>Vendor ID</label>
-            <input
-              type="text"
-              className="form-control"
-              name="vendorId"
-              value={vehicle.vendorId}
               onChange={handleChange}
               required
             />
