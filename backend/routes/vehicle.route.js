@@ -1,5 +1,5 @@
 import express from "express";
-import { add, byCategory, list, remove, saveInBulk, update, view, } from "../controller/vehicle.controller.js";
+import { add, byCategory, byVendorId, list, remove, saveInBulk, update, view, } from "../controller/vehicle.controller.js";
 import { verifyToken } from "../middleware/auth.js";
 import { body, check } from "express-validator";
 
@@ -42,6 +42,8 @@ router.post("/byCategory",
 router.post("/view", body("id", "id is require").notEmpty().isNumeric(), view);
 
 router.get("/list", list);
+
+router.post("/byvendorid", byVendorId);
 
 router.delete("/remove",
   body("id", "id is require").notEmpty().isNumeric(),

@@ -129,6 +129,20 @@ export const byCategory = (request, response, next) => {
   });
 };
 
+export const byVendorId = (request, response, next) => {
+  Vehicle.findAll({
+    where: { vendorId: request.body.vendorId },
+    raw: true,
+  })
+  .then((result) => {
+    if (result) return response.status(200).json({ data: result });
+    return response.status(401).json({ message: "unauthorized request" });
+  })
+  .catch((err) => {
+    return response.status(500).json({ error: "Internal server error...", err });
+  });
+};
+
 export const remove = (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())

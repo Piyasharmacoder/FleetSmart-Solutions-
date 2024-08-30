@@ -18,9 +18,10 @@ function SignIn() {
     axios.post(`${process.env.REACT_APP_API_URL}${state}/signin`, { email, password })
       .then(response => {
         if (response.status === 200) {
-          localStorage.setItem('token',response.data.token);
+          console.log(response);
+          localStorage.setItem('token',response.data.user.token);
           toast.success("Sign In Success....");
-          localStorage.setItem('userid', response.data.user.id);
+          localStorage.setItem('userid', response.data.user.user.id);
           setTimeout(() => { navigate('/') }, 2000)
         }
       }).catch(err => {

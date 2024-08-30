@@ -41,8 +41,8 @@ function Vehicle() {
                                 </div>
                                 <div className="col-md-7 d-flex align-items-center">
                                     <div className="card-body p-0">
-                                        <h5 className="card-title m-1">{item.model}</h5>
                                         <h5 className="card-title m-1 fw-bolder">{item.brand}</h5>
+                                        <h5 className="card-title m-1">{item.model}</h5>
                                         <h5 className="card-title m-1">{item.categoryname}</h5>
                                         <p className="card-text text-success fw-bold m-1">₹{item.rent}<small className="fw-lighter"> /hr</small> [Inclusive of all Taxes]</p>
                                         <p className="card-text m-1"><small className="text-muted">{item.description}</small></p>

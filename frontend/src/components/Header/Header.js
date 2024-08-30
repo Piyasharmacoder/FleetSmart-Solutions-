@@ -29,6 +29,12 @@ function Header() {
               <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/contact')}>Contact</span>
             </li>
             <li className="nav-item">
+              <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/myvehicle')}>My Vehicles</span>
+            </li>
+            <li className="nav-item">
+              <span className="nav-link text-succcess border border-success" style={{ cursor: "pointer" }} onClick={() => navigate('/addvehicle')}>Add Vehicle</span>
+            </li>
+            <li className="nav-item">
             {(localStorage.getItem("userid") * 1 === 0) ? "" :
               <span className="btn btn-outline-success nav-link" style={{ cursor: "pointer",}} onClick={() => {navigate('bookings')}}>My Bookings</span>
             }

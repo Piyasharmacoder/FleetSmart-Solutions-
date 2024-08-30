@@ -42,7 +42,7 @@ function Contact() {
                       className="col-12 col-lg-6 bsb-overlay background-position-center background-size-cover"
                       style={{
                         "--bsb-overlay-opacity": "0.7",
-                        backgroundImage: "url('https://cf-img-a-in.tosshub.com/sites/visualstory/stories/2022_12/story_15675/assets/1.jpeg?time=1671524886')",
+                        backgroundImage: "url('https://a-us.storyblok.com/f/1005140/6000x4000/7d9859592d/zac-edmonds-n1lbcqlp9ec-unsplash.jpg/m/800x500')",
                       }}
                     >
                       <div className="row align-items-lg-center justify-content-center h-100">
