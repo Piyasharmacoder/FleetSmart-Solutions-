@@ -4,8 +4,9 @@ function Header() {
   const navigate = useNavigate();
 
   function logout() {
-    localStorage.setItem("userid", 0);
     localStorage.removeItem("token");
+    localStorage.removeItem("userid");
+    localStorage.removeItem("vendorid");
     navigate('/');
   }
 
@@ -19,26 +20,37 @@ function Header() {
         </button>
         <div className="collapse navbar-collapse" id="mynavbar">
           <ul className="navbar-nav gap-4 w-100 d-flex justify-content-end ">
+          {(localStorage.getItem("userid") * 1 === 0) ? "" :
             <li className="nav-item">
               <span className="nav-link text-light" style={{ cursor: "pointer" }} onClick={() => navigate('/')}>Home</span>
             </li>
+}
+            {(localStorage.getItem("vendorid") * 1 === 0) ? "" :
+            <li className="nav-item">
+              <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/myvehicle')}>My Vehicles</span>
+            </li>
+            }
             <li className="nav-item">
               <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/about')}>About</span>
             </li>
             <li className="nav-item">
               <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/contact')}>Contact</span>
             </li>
+              {(localStorage.getItem("vendorid") * 1 === 0) ? "" :
             <li className="nav-item">
-              <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/myvehicle')}>My Vehicles</span>
+              <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/bookedvehicle')}>Booked Vehicle</span>
             </li>
-            <li className="nav-item">
-              <span className="nav-link text-succcess border border-success" style={{ cursor: "pointer" }} onClick={() => navigate('/addvehicle')}>Add Vehicle</span>
-            </li>
-            <li className="nav-item">
-            {(localStorage.getItem("userid") * 1 === 0) ? "" :
-              <span className="btn btn-outline-success nav-link" style={{ cursor: "pointer",}} onClick={() => {navigate('bookings')}}>My Bookings</span>
             }
+              {(localStorage.getItem("vendorid") * 1 === 0) ? "" :
+            <li className="nav-item">
+              <span className="nav-link text-light" style={{ cursor: "pointer" }} onClick={() => navigate('/addvehicle')}>Add Vehicle</span>
             </li>
+            }
+            {(localStorage.getItem("userid") * 1 === 0) ? "" :
+            <li className="nav-item">
+              <span className="btn btn-outline-success nav-link" style={{ cursor: "pointer",}} onClick={() => {navigate('bookings')}}>My Bookings</span>
+            </li>
+            }
             <li className="nav-item">
               {(localStorage.getItem("userid") * 1 === 0) ?
                   <div className="dropdown m-0 p-0">

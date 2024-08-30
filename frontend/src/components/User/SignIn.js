@@ -18,11 +18,11 @@ function SignIn() {
     axios.post(`${process.env.REACT_APP_API_URL}${state}/signin`, { email, password })
       .then(response => {
         if (response.status === 200) {
-          console.log(response);
+          console.log(response.data.user);
           localStorage.setItem('token',response.data.user.token);
           toast.success("Sign In Success....");
-          localStorage.setItem('userid', response.data.user.user.id);
-          setTimeout(() => { navigate('/') }, 2000)
+          state==="user"?localStorage.setItem('userid', response.data.user.user.id):localStorage.setItem('vendorid', response.data.user.vender.id)
+          setTimeout(() => { state==="user"?navigate('/'):navigate('/myvehicle') }, 2000)
         }
       }).catch(err => {
         console.log(err);

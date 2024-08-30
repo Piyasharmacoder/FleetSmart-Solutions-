@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { format } from 'date-fns';
@@ -9,7 +9,6 @@ const Bookings = () => {
     const [vehicles, setVehicles] = useState([]);
     const [loading, setLoading] = useState(true);
     const userId = localStorage.getItem('userid');
-    const navigate = useNavigate();
 
     useEffect(() => {
         axios.post('http://localhost:3001/rental/fetchRentalItems', { userId })
@@ -19,7 +18,6 @@ const Bookings = () => {
             })
             .catch(err => {
                 console.error(err);
-                toast.error("Failed to load vehicles. Please try again later.");
                 setLoading(false);
             });
     }, [userId]);
