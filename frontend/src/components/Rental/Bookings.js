@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { format } from 'date-fns';
@@ -17,7 +17,6 @@ const Bookings = () => {
                 setLoading(false);
             })
             .catch(err => {
-                console.error(err);
                 setLoading(false);
             });
     }, [userId]);

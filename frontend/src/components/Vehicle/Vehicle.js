@@ -17,7 +17,6 @@ function Vehicle() {
                 setLoading(false);
             })
             .catch(err => {
-                console.error(err);
                 toast.error("Failed to load vehicles. Please try again later.");
                 setLoading(false);
             });
@@ -48,38 +47,16 @@ function Vehicle() {
                                         <p className="card-text m-1"><small className="text-muted">{item.description}</small></p>
                                         <p className="card-text m-1">Manufacturing Year : {item.year}</p>
                                         <p className="card-text m-1"><mark className='fw-bold m-0 p-0'>{item.registration_number}</mark></p>
-                                        <button
-                                            className="btn btn-primary m-1"
-                                            onClick={() => {
-                                                !item.active
-                                                ? toast.warning("Not Available...")
-                                                :(localStorage.getItem("userid") * 1 === 0)
-                                                ?toast.warning("Plese Sign In First..."):
-                                                  navigate("/rental", { state: item })
-                                            }}
-                                        >
-                                            Book Now
-                                        </button>
-                                        <button
-                                            className="btn btn-outline-success m-1"
-                                            onClick={() => { navigate(-1) }}
-                                        >
-                                            Back
-                                        </button>
-                                        {item.active ? (
-                                            <p className="card-text text-success fw-bold m-1">✅ Available</p>
-                                        ) : (
-                                            <p className="card-text text-danger fw-bold m-1">🚫 Not Available</p>
-                                        )}
+                                        <button className="btn btn-primary m-1" onClick={() => { !item.active ? toast.warning("Not Available...") : (localStorage.getItem("userid") * 1 === 0) ? toast.warning("Plese Sign In First...") : navigate("/rental", { state: item }) }}>    Book Now</button>
+                                        <button className="btn btn-outline-success m-1" onClick={() => { navigate(-1) }}>    Back</button>
+                                        {item.active ? (<p className="card-text text-success fw-bold m-1">✅ Available</p>) : (<p className="card-text text-danger fw-bold m-1">🚫 Not Available</p>)}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 )) : (
-                    <div className="container py-3">
-                        <p className="text-center">No vehicles found for this category.</p>
-                    </div>
+                    <div className="container py-3">    <p className="text-center">No vehicles found for this category.</p></div>
                 )}
             </div>
         </>

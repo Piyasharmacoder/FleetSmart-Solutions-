@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import "./MyVehicle.css";  // Import the CSS file
+import Spinner from 'react-bootstrap/Spinner';
 
 const MyVehicle = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -16,14 +16,18 @@ const MyVehicle = () => {
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
-        toast.error("Failed to load vehicles. Please try again later.");
+        toast.error(`Failed to load vehicles: ${err.message}`);
         setLoading(false);
       });
   }, [vendorId]);
 
   if (loading) {
-    return <div className="text-center">Loading vehicles...</div>;
+    return (
+      <div className="text-center">
+        <Spinner animation="border" />
+        <p>Loading vehicles...</p>
+      </div>
+    );
   }
 
   return (
@@ -33,11 +37,11 @@ const MyVehicle = () => {
         <h1 className="text-center text-success mt-2">My Vehicles</h1>
         {vehicles.length > 0 ? (
           <div className="row">
-            {vehicles.map((vehicle, index) => (
-              <div key={index} className="col-sm-6 col-md-4 col-lg-3 mb-3">
+            {vehicles.map((vehicle) => (
+              <div key={vehicle.id} className="col-sm-6 col-md-4 col-lg-3 mb-3">
                 <div className="card h-100 d-flex flex-column">
                   <img
-                    src={vehicle.image}
+                    src={vehicle.image || '/path/to/default/image.jpg'}  // Fallback image
                     className="card-img-top"
                     alt={`${vehicle.brand} ${vehicle.model}`}
                   />
@@ -54,9 +58,6 @@ const MyVehicle = () => {
                     <p className="card-text">
                       <strong>Reg No:</strong> {vehicle.registration_number}
                     </p>
-                    <div className="mt-auto">
-                      {/* This ensures that any additional content sticks to the bottom */}
-                    </div>
                   </div>
                 </div>
               </div>

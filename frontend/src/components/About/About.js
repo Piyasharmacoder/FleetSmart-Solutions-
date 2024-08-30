@@ -1,7 +1,7 @@
 function About() {
   return (
     <>
-      <section className="py-3 py-md-5">
+      <section className="pt-3 pt-md-5">
         <div className="container">
           <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
             <div className="col-12 col-lg-6 col-xl-5">
@@ -47,10 +47,10 @@ function About() {
           </div>
         </div>
       </section>
-      <section className="py-3 py-md-5 py-xl-8">
+      <section className="py-2 py-md-5 py-xl-8">
         <div className="container">
           <div className="row">
-            <div className="col-12 col-md-10 col-lg-8">
+            <div className="col-12">
               <h2 className="display-5 mb-4">Our journey began with a dream of redefining how the world perceives design.</h2>
               <button type="button" className="btn btn-lg btn-primary mb-3 mb-md-4 mb-xl-5">Discover More</button>
             </div>
@@ -60,9 +60,9 @@ function About() {
           <div className="row gy-4 gy-lg-0">
             <div className="col-12 col-lg-6">
               <article>
-                <div className="card border-0">
+                <div className="card pb-3 border border-top border-0 shadow">
                   <img className="card-img-top img-fluid m-0" height={100} src="https://sanyglobal-img.sany.com.cn/product/goods/20200902/Truck-mounted%20c-174645.jpg?x-oss-process=image/format,webp" alt="Our Vision" />
-                  <div className="card-body border bg-white p-4">
+                  <div className="card-body shadow bg-white p-4">
                     <div className="entry-header mb-3">
                       <h2 className="card-title entry-title h4 mb-0">
                         <a className="link-dark text-decoration-none" href="#!">Our Vision</a>
@@ -75,9 +75,9 @@ function About() {
             </div>
             <div className="col-12 col-lg-6">
               <article>
-                <div className="card border-0">
+                <div className="card pb-3 border border-top border-0 shadow">
                   <img className="card-img-top img-fluid m-0 mt-4 mb-1" src="image/loader.png" alt="Our Approach" />
-                  <div className="card-body border bg-white p-4 mt-3">
+                  <div className="card-body shadow bg-white p-4 mt-3">
                     <div className="entry-header mb-3">
                       <h2 className="card-title entry-title h4 mb-0">
                         <a className="link-dark text-decoration-none" href="#!">Our Approach</a>

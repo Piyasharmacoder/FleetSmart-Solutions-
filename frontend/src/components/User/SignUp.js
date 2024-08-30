@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [contactNumber, setContactNumber] = useState("");
-  
+
   const [nameerror, setNameerror] = useState(" ");
   const [emailerror, setEmailerror] = useState(" ");
   const [passworderror, setPassworderror] = useState("  ");
   const [contactNumbererror, setContactNumbererror] = useState("    ");
 
-  const {state} = useLocation();
+  const { state } = useLocation();
 
   const navigate = useNavigate();
   const Register = async () => {
@@ -23,13 +23,12 @@ function SignUp() {
       .then(response => {
         if (response.status === 200) {
           toast.success("Sign Up Success....");
-          setTimeout(() => { navigate('/signIn',{state:state}) }, 2000)
+          navigate('/signIn', { state: state })
         }
       }).catch(err => {
         if (err.response.status === 400) {
           toast.info('User already exist...');
         } else
-          console.log(err);
           toast.error("User internal error...");
       });
   };
@@ -49,12 +48,9 @@ function SignUp() {
               <div className="card text-black">
                 <div className="card-body p-md-4">
                   <div className="row justify-content-center">
-
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" style={{ backgroundColor: "#c6cbc9" }}>
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Register</p>
-
                       <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
-
                         <div className="d-flex flex-row align-items-center mb-3">
                           <div data-mdb-input-init className="form-outline flex-fill mb-0">
                             <label className="form-label" htmlFor="form3Example1c"> Your Name</label>
@@ -62,7 +58,6 @@ function SignUp() {
                             <small className="text-danger fs-7" >{nameerror}</small>
                           </div>
                         </div>
-
                         <div className="d-flex flex-row align-items-center mb-3">
                           <div data-mdb-input-init className="form-outline flex-fill mb-0">
                             <label className="form-label" htmlFor="form3Example3c"> Your Email</label>
@@ -70,7 +65,6 @@ function SignUp() {
                             <small className="text-danger fs-7" >{emailerror}</small>
                           </div>
                         </div>
-
                         <div className="d-flex flex-row align-items-center mb-3">
                           <div data-mdb-input-init className="form-outline flex-fill mb-0">
                             <label className="form-label" htmlFor="form3Example4c">Password</label>
@@ -78,7 +72,6 @@ function SignUp() {
                             <small className="text-danger fs-7" >{passworderror}</small>
                           </div>
                         </div>
-
                         <div className="d-flex flex-row align-items-center mb-3">
                           <div data-mdb-input-init className="form-outline flex-fill mb-0">
                             <label className="form-label" htmlFor="form3Example5c">ContactNumber</label>
@@ -86,23 +79,17 @@ function SignUp() {
                             <small className="text-danger fs-7" >{contactNumbererror}</small>
                           </div>
                         </div>
-
                         <div className="form-check d-flex justify-content-center mb-4">
                           <label className="form-check-label" htmlFor="form2Example3">you have already account <a href="signin" onClick={() => navigate('/signin')}> Sign In</a></label>
                         </div>
-
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          {(nameerror === emailerror && emailerror === passworderror && passworderror === contactNumbererror) ? <button className="btn btn-dark" onClick={() => { Register() }}>Register</button> : <button className="btn btn-secondary" onClick={() => { (name === "") ? setNameerror("name is required") : (email === "") ? setEmailerror("email is required") : (password === "") ? setPassworderror("password is required") :(contactNumber === "") ? setContactNumbererror("Contactnumber is required") : setContactNumbererror(" ") }}>Register</button>}
+                          {(nameerror === emailerror && emailerror === passworderror && passworderror === contactNumbererror) ? <button className="btn btn-dark" onClick={() => { Register() }}>Register</button> : <button className="btn btn-secondary" onClick={() => { (name === "") ? setNameerror("name is required") : (email === "") ? setEmailerror("email is required") : (password === "") ? setPassworderror("password is required") : (contactNumber === "") ? setContactNumbererror("Contactnumber is required") : setContactNumbererror(" ") }}>Register</button>}
                         </div>
-
                       </form>
-
                     </div>
-
                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                      <img src="logo.png" className="img-fluid" alt="logo...." />
+                      <img src="image/logo.png" className="img-fluid" alt="logo...." />
                     </div>
-
                   </div>
                 </div>
               </div>
