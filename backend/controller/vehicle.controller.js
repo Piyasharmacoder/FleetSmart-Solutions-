@@ -2,6 +2,8 @@ import { validationResult } from "express-validator";
 import Vehicle from "../model/vehicle.model.js";
 import Category from "../model/category.model.js";
 import Vendor from "../model/vendor.model.js";
+import Rental from "../model/rental.model.js";
+import User from "../model/user.model.js";
 
 export const add = (request, response, next) => {
   const errors = validationResult(request);
@@ -127,6 +129,41 @@ export const byCategory = (request, response, next) => {
     console.error(err);
     return response.status(500).json({ error: "Internal Server Error", err });
   });
+};
+
+export const byVendorId = (request, response, next) => {
+  Vehicle.findAll({
+    where: { vendorId: request.body.vendorId },
+    raw: true,
+  })
+  .then((result) => {
+    if (result) return response.status(200).json({ data: result });
+    return response.status(401).json({ message: "unauthorized request" });
+  })
+  .catch((err) => {
+    return response.status(500).json({ error: "Internal server error...", err });
+  });
+};
+
+
+export const fetchVehicleUser = (request, response, next) => {
+  const errors = validationResult(request);
+  if (!errors.isEmpty())
+    return response.status(401).json({ error: errors.array() });
+
+  Vehicle.findAll({
+    where: { vendorId: request.body.vendorId, active:0 },
+    include: [{ model: Rental, required: true, include: [{ model: User, required: true }] }],
+  })
+    .then((result) => {
+      if (result[0]) return response.status(200).json({ data: result });
+      return response
+        .status(401)
+        .json({ error: "data are not abelevel........" });
+    })
+    .catch((err) => {
+      return response.status(500).json({ error: "Internal Server Error", err });
+    });
 };
 
 export const remove = (request, response, next) => {
