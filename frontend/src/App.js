@@ -1,15 +1,17 @@
 import "./App.css";
+import 'react-toastify/dist/ReactToastify.css';
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import Maintanence from "./components/Maintanence/Maintanence";
 
 // Lazy-loaded components
 const SignUp = lazy(() => import("./components/User/SignUp"));
 const SignIn = lazy(() => import("./components/User/SignIn"));
 const Bookings = lazy(() => import("./components/Rental/Bookings"));
 const AddVehicle = lazy(() => import("./components/Vehicle/AddVehicle"));
-const MyVehicle = lazy(() => import("./components/Vehicle/MyWehicle"));
+const MyVehicle = lazy(() => import("./components/Vehicle/MyVehicle"));
 const BookedVehicle = lazy(() => import("./components/Rental/BookedVehicle"));
 const Vehicle = lazy(() => import("./components/Vehicle/Vehicle"));
 const Rental = lazy(() => import("./components/Rental/Rental"));
@@ -39,6 +41,7 @@ function App() {
           <Route path="/addvehicle" element={<AddVehicle />} />
           <Route path="/myvehicle" element={<MyVehicle />} />
           <Route path="/bookedvehicle" element={<BookedVehicle />} />
+          <Route path="/vehiclemaintanence" element={<Maintanence />} />
         </Routes>
       </Suspense>
       <Footer />

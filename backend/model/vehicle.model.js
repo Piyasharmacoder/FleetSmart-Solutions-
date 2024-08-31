@@ -75,7 +75,4 @@ sequelize
     console.log(err);
   });
 
-Rental.belongsToMany(Vehicle, { through: RentalItems });
-Vehicle.belongsToMany(Rental, { through: RentalItems });
-
 export default Vehicle;

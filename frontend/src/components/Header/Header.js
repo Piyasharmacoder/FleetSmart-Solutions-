@@ -62,13 +62,16 @@ function Header() {
               (localStorage.getItem("vendorid")) &&
               <ul className="navbar-nav gap-4 w-100 d-flex justify-content-end ">
                 <li className="nav-item">
+                  <span className="nav-link text-light" style={{ cursor: "pointer" }} onClick={() => navigate('/addvehicle')}>Add Vehicle</span>
+                </li>
+                <li className="nav-item">
                   <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/myvehicle')}>My Vehicles</span>
                 </li>
                 <li className="nav-item">
-                  <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/bookedvehicle')}>Booked Vehicle</span>
+                  <span className="nav-link text-light" style={{ cursor: "pointer" }} onClick={() => navigate('/vehiclemaintanence')}>Vehicle Maintanence</span>
                 </li>
                 <li className="nav-item">
-                  <span className="nav-link text-light" style={{ cursor: "pointer" }} onClick={() => navigate('/addvehicle')}>Add Vehicle</span>
+                  <span className="nav-link text-light " style={{ cursor: "pointer" }} onClick={() => navigate('/bookedvehicle')}>Booked Vehicle</span>
                 </li>
                 <li className="nav-item">
                   <span className="btn btn-success" style={{ cursor: "pointer" }} onClick={() => { logout() }}>LogOut</span>

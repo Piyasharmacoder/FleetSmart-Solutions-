@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const BookedVehicle = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -16,7 +14,6 @@ const BookedVehicle = () => {
         setVehicles(response.data.data);
       } catch (err) {
         setError("Failed to load booked vehicles. Please try again later.");
-        toast.error("Failed to load booked vehicles. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -30,7 +27,6 @@ const BookedVehicle = () => {
 
   return (
     <div className="container-fluid bg-light pt-3">
-      <ToastContainer />
       <h1 className="text-center text-success mt-2">Booked Vehicles</h1>
       {error && (
         <div className="text-center text-danger">  <p>{error}</p></div>

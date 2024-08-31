@@ -1,5 +1,5 @@
 import express from "express";
-import { add, byCategory, byVendorId, fetchVehicleUser, list, remove, saveInBulk, update, view, } from "../controller/vehicle.controller.js";
+import { add, byCategory, byVendorId, fetchVehicleMaintanence, fetchVehicleMaintanenceStatus, fetchVehicleUser, list, remove, saveInBulk, update, view, } from "../controller/vehicle.controller.js";
 import { verifyToken } from "../middleware/auth.js";
 import { body, check } from "express-validator";
 
@@ -29,7 +29,7 @@ router.put("/update",
   body("year", "year is require").notEmpty(),
   body("registration_number", "registration_number is require").notEmpty(),
   body("image", "image is require").notEmpty(),
-  body("vendorId", "image is vendorId").notEmpty(),
+  body("vendorId", "require vendorId").notEmpty(),
   body("id", "id is require").notEmpty().isNumeric(),
   update
 );
@@ -45,7 +45,14 @@ router.get("/list", list);
 
 router.post("/byvendorid", byVendorId);
 
-router.post("/fetchVehicleUser",fetchVehicleUser);
+router.post("/fetchVehicleUser", fetchVehicleUser);
+
+router.post("/fetchVehicleMaintanence", body("vendorId", "require vendorId").notEmpty(), fetchVehicleMaintanence);
+
+router.post("/fetchVehicleMaintanenceStatus",
+  body("vendorId", "require vendorId").notEmpty(),
+  body("maintanenceStatus", "require maintanenceStatus").notEmpty(),
+  fetchVehicleMaintanenceStatus);
 
 router.delete("/remove",
   body("id", "id is require").notEmpty().isNumeric(),

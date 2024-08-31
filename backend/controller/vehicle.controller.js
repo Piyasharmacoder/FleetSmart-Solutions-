@@ -4,6 +4,7 @@ import Category from "../model/category.model.js";
 import Vendor from "../model/vendor.model.js";
 import Rental from "../model/rental.model.js";
 import User from "../model/user.model.js";
+import Maintanence from "../model/maintanence.model.js";
 
 export const add = (request, response, next) => {
   const errors = validationResult(request);
@@ -119,16 +120,16 @@ export const byCategory = (request, response, next) => {
     where: { categoryname: request.body.categoryName },
     include: [{ model: Vendor, as: "vendor" }] // Include associated Vendor
   })
-  .then(result => {
-    if (result.length > 0)
-      return response.status(200).json({ vehicleList: result });
-    else
-      return response.status(404).json({ error: "No vehicles found for the specified category" });
-  })
-  .catch(err => {
-    console.error(err);
-    return response.status(500).json({ error: "Internal Server Error", err });
-  });
+    .then(result => {
+      if (result.length > 0)
+        return response.status(200).json({ vehicleList: result });
+      else
+        return response.status(404).json({ error: "No vehicles found for the specified category" });
+    })
+    .catch(err => {
+      console.error(err);
+      return response.status(500).json({ error: "Internal Server Error", err });
+    });
 };
 
 export const byVendorId = (request, response, next) => {
@@ -136,13 +137,13 @@ export const byVendorId = (request, response, next) => {
     where: { vendorId: request.body.vendorId },
     raw: true,
   })
-  .then((result) => {
-    if (result) return response.status(200).json({ data: result });
-    return response.status(401).json({ message: "unauthorized request" });
-  })
-  .catch((err) => {
-    return response.status(500).json({ error: "Internal server error...", err });
-  });
+    .then((result) => {
+      if (result) return response.status(200).json({ data: result });
+      return response.status(401).json({ message: "unauthorized request" });
+    })
+    .catch((err) => {
+      return response.status(500).json({ error: "Internal server error...", err });
+    });
 };
 
 
@@ -152,7 +153,7 @@ export const fetchVehicleUser = (request, response, next) => {
     return response.status(401).json({ error: errors.array() });
 
   Vehicle.findAll({
-    where: { vendorId: request.body.vendorId, active:0 },
+    where: { vendorId: request.body.vendorId, active: 0 },
     include: [{ model: Rental, required: true, include: [{ model: User, required: true }] }],
   })
     .then((result) => {
@@ -160,6 +161,42 @@ export const fetchVehicleUser = (request, response, next) => {
       return response
         .status(401)
         .json({ error: "data are not abelevel........" });
+    })
+    .catch((err) => {
+      return response.status(500).json({ error: "Internal Server Error", err });
+    });
+};
+
+export const fetchVehicleMaintanence = (request, response, next) => {
+  const errors = validationResult(request);
+  if (!errors.isEmpty())
+    return response.status(401).json({ error: errors.array() });
+
+  Vehicle.findAll({
+    where: { vendorId: request.body.vendorId },
+    include: [{ model: Maintanence, required: true }],
+  })
+    .then((result) => {
+      if (result[0]) return response.status(200).json({ data: result });
+      return response.status(401).json({ error: "data are not abelevel........" });
+    })
+    .catch((err) => {
+      return response.status(500).json({ error: "Internal Server Error", err });
+    });
+};
+
+export const fetchVehicleMaintanenceStatus = (request, response, next) => {
+  const errors = validationResult(request);
+  if (!errors.isEmpty())
+    return response.status(401).json({ error: errors.array() });
+
+  Vehicle.findAll({
+    where: { vendorId: request.body.vendorId },
+    include: [{ model: Maintanence, required: true, where: { maintanenceStatus: request.body.maintanenceStatus } }],
+  })
+    .then((result) => {
+      if (result[0]) return response.status(200).json({ data: result });
+      return response.status(401).json({ error: "data are not abelevel........" });
     })
     .catch((err) => {
       return response.status(500).json({ error: "Internal Server Error", err });

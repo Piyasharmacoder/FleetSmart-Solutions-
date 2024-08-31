@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { format } from 'date-fns';
 
 const Bookings = () => {
@@ -27,7 +25,6 @@ const Bookings = () => {
 
     return (
         <>
-            <ToastContainer />
             {vehicles.length > 0 ? (
                 <div className="container-fluid bg-light pt-3">
                     <h1 className="text-center text-success mt-2">My Bookings</h1>
