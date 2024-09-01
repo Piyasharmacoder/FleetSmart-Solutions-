@@ -13,8 +13,7 @@ const sequelize = new Sequelize(
   }
 );
 
-sequelize
-  .authenticate()
+sequelize.authenticate()
   .then(() => {
     console.log("Datbase connected....");
   })

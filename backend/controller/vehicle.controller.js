@@ -31,13 +31,10 @@ export const add = (request, response, next) => {
 };
 
 export const saveInBulk = async (request, response, next) => {
-
   try {
     let vehicleList = request.body;
-
     for (let vehicle of vehicleList) {
       let { id, brand, model, rent, description, categoryname, year, registration_number, image, vendorId } = vehicle;
-
       let vehiclenumber = await Vehicle.findOne({ where: { registration_number } });
       let category = await Category.findOne({ where: { categoryName: categoryname } });
       if (!vehiclenumber && category)
@@ -55,53 +52,27 @@ export const update = (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
     return response.status(401).json({ error: errors.array() });
-
-  Vehicle.update(
-    {
-      brand: request.body.brand,
-      model: request.body.model,
-      rent: request.body.rent,
-      description: request.body.description,
-      categoryname: request.body.categoryname,
-      year: request.body.year,
-      registration_number: request.body.registration_number,
-      image: request.body.image,
-      vendorId: request.body.vendorId,
-    },
-    {
-      where: { id: request.body.id },
-      raw: true,
-    }
-  )
-    .then((result) => {
-      if (result[0])
-        return response
-          .status(200)
-          .json({ message: "vehicle data updated...." });
-      return response.status(401).json({ message: "unauthorized request...." });
-    })
-    .catch((err) => {
-      return response
-        .status(500)
-        .json({ error: "internal server error....", err });
-    });
-};
-
-export const view = (request, response, next) => {
-  const errors = validationResult(request);
-  if (!errors.isEmpty())
-    return response.status(401).json({ error: errors.array() });
-
-  Vehicle.findOne({
+  Vehicle.update({
+    brand: request.body.brand,
+    model: request.body.model,
+    rent: request.body.rent,
+    description: request.body.description,
+    categoryname: request.body.categoryname,
+    year: request.body.year,
+    registration_number: request.body.registration_number,
+    image: request.body.image,
+    vendorId: request.body.vendorId,
+  }, {
     where: { id: request.body.id },
     raw: true,
   })
     .then((result) => {
-      if (result) return response.status(200).json({ data: result });
-      return response.status(401).json({ message: "unauthorized request" });
+      if (result[0])
+        return response.status(200).json({ message: "vehicle data updated...." });
+      return response.status(401).json({ message: "unauthorized request...." });
     })
     .catch((err) => {
-      return response.status(500).json({ error: "internal server err....." });
+      return response.status(500).json({ error: "internal server error....", err });
     });
 };
 

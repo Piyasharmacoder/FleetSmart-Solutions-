@@ -23,10 +23,7 @@ const Maintanence = () => {
 
     const fetchAllMaintenances = () => {
         setLoading(true);
-        axios
-            .post("http://localhost:3001/vehicle/fetchVehicleMaintanence", {
-                vendorId: vendorId,
-            })
+        axios.post("http://localhost:3001/vehicle/fetchVehicleMaintanence", { vendorId: vendorId, })
             .then((response) => {
                 setMaintanenceData(response.data.data);
                 setLoading(false);
@@ -40,11 +37,7 @@ const Maintanence = () => {
 
     const fetchMaintenancesByStatus = (status) => {
         setLoading(true);
-        axios
-            .post("http://localhost:3001/vehicle/fetchVehicleMaintanenceStatus", {
-                vendorId: vendorId,
-                maintanenceStatus: status,
-            })
+        axios.post("http://localhost:3001/vehicle/fetchVehicleMaintanenceStatus", { vendorId: vendorId, maintanenceStatus: status, })
             .then((response) => {
                 setMaintanenceData(response.data.data);
                 setLoading(false);
@@ -69,16 +62,15 @@ const Maintanence = () => {
     };
 
     const handleUpdateSubmit = () => {
-        axios
-            .put("http://localhost:3001/maintanence/update", {
-                vehicleId: currentMaintenance.vehicleId,
-                maintanenceDate: updatedDate,
-                maintanenceStatus: updatedStatus,
-            })
+        axios.put("http://localhost:3001/maintanence/update", {
+            vehicleId: currentMaintenance.vehicleId,
+            maintanenceDate: updatedDate,
+            maintanenceStatus: updatedStatus,
+        })
             .then((response) => {
                 setShowModal(false);
                 toast.success("Maintenance updated successfully.");
-                fetchAllMaintenances(); // Refresh data after update
+                fetchAllMaintenances();
             })
             .catch((err) => {
                 console.error("Error updating maintenance:", err);
@@ -103,8 +95,6 @@ const Maintanence = () => {
         <div className="container mt-4">
             <ToastContainer />
             <h1 className="text-center text-success mb-4">Vehicle Maintenance Records</h1>
-
-            {/* Filter Buttons and Search Bar */}
             <div className="d-flex justify-content-between align-items-center flex-wrap mb-3">
                 <div className="d-flex justify-content-between flex-wrap">
                     <Button variant="secondary" className="my-2 me-2" onClick={fetchAllMaintenances}>
@@ -120,12 +110,8 @@ const Maintanence = () => {
                         Cancel
                     </Button>
                 </div>
-
-                {/* Search Bar */}
                 <Form.Control className="form-control me-2" type="search" aria-label="Search" placeholder="Search by Registration Number" value={searchQuery} onChange={handleSearch} style={{ width: "250px" }} />
             </div>
-
-            {/* Maintenance Table */}
             {filteredData.length > 0 ? (
                 <Table striped bordered hover responsive>
                     <thead>
@@ -164,8 +150,6 @@ const Maintanence = () => {
                     <p>No maintenance records found.</p>
                 </div>
             )}
-
-            {/* Update Maintenance Modal */}
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Update Maintenance</Modal.Title>

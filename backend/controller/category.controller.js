@@ -81,19 +81,15 @@ export const search = async (request, response, next) => {
     const keywords = query
       .toLowerCase()
       .split(" ")
-      //  the raj
       .filter((word) => word.length > 0);
 
-    // Assuming Category, Yoga, HomeRemedy, and Product are Sequelize models
     const searchResults = await Category.findAll({
       where: {
         categoryName: {
           [Op.or]: keywords.map((keyword) => ({ [Op.like]: `%${keyword}%` })),
         },
       },
-      // include: [Yoga, HomeRemedy, Product] // Include associated models
     });
-
     return response.status(200).json(searchResults);
   } catch (error) {
     console.error("Error during search:", error);

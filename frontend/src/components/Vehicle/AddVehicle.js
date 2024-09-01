@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function AddVehicle() {
   const [vehicle, setVehicle] = useState({ brand: "", model: "", rent: "", description: "", categoryname: "", year: "", registration_number: "", image: "", vendorId: localStorage.getItem('vendorid'), });

@@ -1,7 +1,6 @@
 import express from "express";
-import { add, byCategory, byVendorId, fetchVehicleMaintanence, fetchVehicleMaintanenceStatus, fetchVehicleUser, list, remove, saveInBulk, update, view, } from "../controller/vehicle.controller.js";
-import { verifyToken } from "../middleware/auth.js";
-import { body, check } from "express-validator";
+import { add, byCategory, byVendorId, fetchVehicleMaintanence, fetchVehicleMaintanenceStatus, fetchVehicleUser, list, remove, saveInBulk, update } from "../controller/vehicle.controller.js";
+import { body } from "express-validator";
 
 const router = express.Router();
 
@@ -34,12 +33,7 @@ router.put("/update",
   update
 );
 
-router.post("/byCategory",
-  body("id", "id is require").notEmpty(),
-  byCategory
-);
-
-router.post("/view", body("id", "id is require").notEmpty().isNumeric(), view);
+router.post("/byCategory", body("id", "id is require").notEmpty(), byCategory);
 
 router.get("/list", list);
 
@@ -54,9 +48,6 @@ router.post("/fetchVehicleMaintanenceStatus",
   body("maintanenceStatus", "require maintanenceStatus").notEmpty(),
   fetchVehicleMaintanenceStatus);
 
-router.delete("/remove",
-  body("id", "id is require").notEmpty().isNumeric(),
-  remove
-);
+router.delete("/remove", body("id", "id is require").notEmpty().isNumeric(), remove);
 
 export default router;

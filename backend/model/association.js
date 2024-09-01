@@ -7,7 +7,6 @@ import Vehicle from "./vehicle.model.js";
 import Vendor from "./vendor.model.js";
 console.log("Association Executed.......");
 
-//category
 Category.hasMany(Vehicle, { foreignKey: "categoryname" });
 Vehicle.belongsTo(Category, { foreignKey: "categoryname" });
 
