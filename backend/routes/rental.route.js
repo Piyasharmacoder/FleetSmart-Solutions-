@@ -1,39 +1,27 @@
 import express from "express";
-import { body } from "express-validator";
 import { addToRental, fetchRentalItems, removeFromRental } from "../controller/rental.controller.js";
+import { body } from "express-validator";
 
 const router = express.Router();
 
-// Add a vehicle to the rental
-router.post(
-  "/add",
-  [
-    body("userId", "User ID is required").notEmpty(),
-    body("VehicleId", "Vehicle ID is required").notEmpty(),
-    body("work", "Work description is required").notEmpty(),
-    body("work_place", "Work place is required").notEmpty(),
-    body("date", "Date is required").notEmpty(),
-    body("time", "Time is required").notEmpty(),
-  ],
+router.post("/add",
+  body("userId", "invalid userId").notEmpty(),
+  body("VehicleId", "invalid vehicleId").notEmpty(),
+  body("work", "invalid work").notEmpty(),
+  body("work_place", "invalid  work_place").notEmpty(),
+  body("date", "invalid date").notEmpty(),
+  body("time", "invalid time").notEmpty(),
   addToRental
 );
 
-// Fetch rental items for a user
-router.get(
-  "/fetchRentalItems",
-  [
-    body("userId", "User ID is required").notEmpty(),
-  ],
+router.post("/fetchRentalItems",
+  body("userId", "invalid userId").notEmpty(),
   fetchRentalItems
 );
 
-// Remove a vehicle from the rental
-router.delete(
-  "/removeRentalItems",
-  [
-    body("userId", "User ID is required").notEmpty(),
-    body("VehicleId", "Vehicle ID is required").notEmpty(),
-  ],
+router.delete("/removeRentalItems",
+  body("userId", "invalid userId").notEmpty(),
+  body("VehicleId", "invalid vehicleId").notEmpty(),
   removeFromRental
 );
 
