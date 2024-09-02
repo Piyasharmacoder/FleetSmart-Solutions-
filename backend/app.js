@@ -16,10 +16,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/user", UserRouter);
-app.use("/rental", RentalRouter);
-app.use("/vehicle", VehicleRouter);
 app.use("/vendor", VendorRouter);
 app.use("/category", CategoryRouter);
+app.use("/vehicle", VehicleRouter);
+app.use("/rental", RentalRouter);
 app.use("/maintanence", MaintanenceRouter);
 
 app.use((request, response) => {

@@ -20,7 +20,7 @@ const Maintanence = sequelize.define("maintanence", {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: Vehicle, // references the Vehicle model
+      model: Vehicle,
       key: "id",
     },
   },

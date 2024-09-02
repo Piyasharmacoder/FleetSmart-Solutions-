@@ -1,12 +1,10 @@
 import express from "express";
-import { verifyToken } from "../middleware/auth.js";
-import { body, check } from "express-validator";
+import { body } from "express-validator";
 import { signIn, signUp } from "../controller/vendor.controller.js";
 
 const router = express.Router();
 
-router.post(
-  "/signUp",
+router.post("/signUp",
   body("email", "invalid email").isEmail(),
   body("email", "email is require").notEmpty(),
   body("password", "password is require").notEmpty(),
@@ -15,8 +13,7 @@ router.post(
   signUp
 );
 
-router.post(
-  "/signIn",
+router.post("/signIn",
   body("email", "invalid email").isEmail(),
   body("email", "email is require").notEmpty(),
   body("password", "password is require").notEmpty(),

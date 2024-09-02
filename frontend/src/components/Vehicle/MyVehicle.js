@@ -5,7 +5,6 @@ import DateTimePicker from "react-datetime-picker";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 const MyVehicle = () => {
   const vendorId = localStorage.getItem('vendorid');
@@ -23,7 +22,7 @@ const MyVehicle = () => {
       })
       .catch(err => {
         setLoading(false);
-        console.error(err);  // Added for better error handling
+        console.error(err);
       });
   }, [vendorId]);
 
@@ -36,14 +35,14 @@ const MyVehicle = () => {
 
       if (response.status === 200) {
         toast.success("Maintenance saved successfully.");
-        setmaintanenceactive(true); // Close modal
+        setmaintanenceactive(true);
       }
     } catch (error) {
       if (error.response.status === 401)
         toast.warning("Vehicle is already added for Maintanence.");
       else
         toast.error("Error saving maintenance data. Please try again.");
-      setmaintanenceactive(true); // Close modal
+      setmaintanenceactive(true);
     }
   };
 
@@ -60,7 +59,6 @@ const MyVehicle = () => {
     <>
       <ToastContainer />
       <div className="container-fluid bg-light pt-3 position-relative">
-        {/* Maintenance modal */}
         <div
           className="w-100 h-100 fixed-top justify-content-center position-absolute"
           style={{ display: maintanenceactive ? "none" : "flex", zIndex: "1", background: "rgba(0, 0, 0, .5)" }}
@@ -74,8 +72,6 @@ const MyVehicle = () => {
             </div>
           </div>
         </div>
-
-        {/* Vehicle List */}
         <h1 className="text-center text-success mt-2">My Vehicles</h1>
         {vehicles.length > 0 ? (
           <div className="row">

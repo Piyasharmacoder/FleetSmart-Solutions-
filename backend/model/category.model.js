@@ -20,10 +20,11 @@ const Category = sequelize.define("category", {
     }
 });
 
-Category.sync().then(() => {
-    console.log("category table created...")
-}).catch(err => {
-    console.log(err)
-})
+Category.sync()
+    .then(() => {
+        console.log("category table created...")
+    }).catch(err => {
+        console.log(err)
+    })
 
 export default Category; 

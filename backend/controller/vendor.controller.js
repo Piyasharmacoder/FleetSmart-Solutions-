@@ -41,82 +41,9 @@ export const signIn = async (request, response, next) => {
     if (Vendor.checkPassword(password, vender.password)) {
       let payload = { subject: email };
       let token = jwt.sign(payload, "fdfjfjrwieroerivxcnmvnnvrweiorddfsdfdlkfjlfjljlraj");
-      return response.status(200).json({ message: "Sign In Success", user:{vender, token} });
+      return response.status(200).json({ message: "Sign In Success", user: { vender, token } });
     } else {
       return response.status(401).json({ error: "Unauthorized user" });
     }
   } else return response.status(401).json({ error: "Unauthorized user" });
-};
-
-export const update = (request, response, next) => {
-  const errors = validationResult(request);
-  if (!errors.isEmpty())
-    return response.status(401).json({ error: errors.array() });
-
-  Vendor.update(
-    {
-      name: request.body.name,
-      email: request.body.email,
-      password: request.body.password,
-      contactNumber: request.body.contactNumber,
-    },
-    {
-      where: { id: request.body.id },
-      raw: true,
-    }
-  )
-    .then((result) => {
-      if (result[0])
-        return response.status(200).json({ message: "user updated...." });
-      return response.status(401).json({ message: "unauthorized request...." });
-    })
-    .catch((err) => {
-      return response
-        .status(500)
-        .json({ error: "internal server error....", err });
-    });
-};
-
-export const view = (request, response, next) => {
-  const errors = validationResult(request);
-  if (!errors.isEmpty())
-    return response.status(401).json({ error: errors.array() });
-
-  Vendor.findOne({ where: { email: request.body.email }, raw: true, })
-    .then((result) => {
-      if (result) return response.status(200).json({ data: result });
-      return response.status(401).json({ message: "unauthorized request" });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "internal server err....." });
-    });
-};
-
-export const list = (request, response, next) => {
-    Vendor.findAll({ raw: true })
-    .then((result) => {
-      return response.status(200).json({ data: result });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "Internal server error...", err });
-    });
-};
-
-export const remove = (request, response, next) => {
-  const errors = validationResult(request);
-  if (!errors.isEmpty())
-    return response.status(401).json({ error: errors.array() });
-
-  Vendor.destroy({
-    where: { email: request.body.email },
-    raw: true,
-  })
-    .then((result) => {
-      if (result)
-        return response.status(200).json({ message: "user deleted...." });
-      return response.status(401).json({ message: "unauthorized request...." });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "Internal server error.....", err });
-    });
 };
