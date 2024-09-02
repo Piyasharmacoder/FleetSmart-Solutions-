@@ -2,6 +2,7 @@ import { DataTypes } from "sequelize";
 import sequelize from "../db/dbconfig.js";
 import bcyrpt from "bcryptjs";
 
+// Define the Vendor model
 const Vendor = sequelize.define("Vendor", {
   id: {
     type: DataTypes.INTEGER,
@@ -38,8 +39,8 @@ Vendor.checkPassword = (originalPassword, encryptedPassword) => {
   return bcyrpt.compareSync(originalPassword, encryptedPassword);
 };
 
-sequelize
-  .sync()
+// Sync the model with the database
+sequelize.sync()
   .then(() => {
     console.log("Vender table created....");
   })

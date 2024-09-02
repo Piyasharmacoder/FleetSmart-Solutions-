@@ -1,7 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/dbconfig.js";
-import bcyrpt from "bcryptjs";
+import bcrypt from "bcryptjs";
 
+// Define the User model
 const User = sequelize.define("user", {
   id: {
     type: DataTypes.INTEGER,
@@ -21,8 +22,8 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     allowNull: false,
     set(value) {
-      let saltkey = bcyrpt.genSaltSync(10);
-      let encryptedPassword = bcyrpt.hashSync(value, saltkey);
+      const saltkey = bcrypt.genSaltSync(10);
+      const encryptedPassword = bcrypt.hashSync(value, saltkey);
       this.setDataValue("password", encryptedPassword);
     },
   },
@@ -33,18 +34,19 @@ const User = sequelize.define("user", {
   },
 });
 
+// Add a method to check the password
 User.checkPassword = (originalPassword, encryptedPassword) => {
-  console.log("check Password called....");
-  return bcyrpt.compareSync(originalPassword, encryptedPassword);
+  return bcrypt.compareSync(originalPassword, encryptedPassword);
 };
 
+// Sync the model with the database
 sequelize
   .sync()
   .then(() => {
-    console.log("user table created....");
+    console.log("User table created....");
   })
   .catch((err) => {
-    console.log("something wrong....");
+    console.log("Something went wrong....");
     console.log(err);
   });
 

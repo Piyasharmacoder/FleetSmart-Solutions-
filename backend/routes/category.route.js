@@ -1,28 +1,44 @@
 import express from "express";
-import { Categorydata, Categorylist, save, saveInBulk, search, } from "../controller/category.controller.js";
+import {
+  Categorydata,
+  Categorylist,
+  save,
+  saveInBulk,
+  search,
+} from "../controller/category.controller.js";
 import { body } from "express-validator";
 
 const router = express.Router();
 
-router.post("/add",
-  body("categoryName", "invalid categoryName").notEmpty(),
-  body("use", "invalid use").notEmpty(),
-  body("description", "invalid description").notEmpty(),
-  body("imageUrl", "invalid imageUrl").notEmpty(),
+// Add a single category
+router.post(
+  "/add",
+  [
+    body("categoryName", "Category name is required").notEmpty(),
+    body("use", "Use field is required").notEmpty(),
+    body("description", "Description is required").notEmpty(),
+    body("imageUrl", "Image URL is required").notEmpty(),
+  ],
   save
 );
 
+// Add multiple categories in bulk
 router.post("/addinbulk", saveInBulk);
 
+// List all categories
 router.get("/list", Categorylist);
 
-router.post("/data",
-  body("categoryName", "categoryName is require").notEmpty(),
+// Get category data by category name
+router.post(
+  "/data",
+  [body("categoryName", "Category name is required").notEmpty()],
   Categorydata
 );
 
-router.post("/search",
-  body("categoryName", "categoryName is require").notEmpty(),
+// Search for categories by name
+router.post(
+  "/search",
+  [body("categoryName", "Category name is required").notEmpty()],
   search
 );
 

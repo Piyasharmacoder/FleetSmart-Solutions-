@@ -6,6 +6,7 @@ import Rental from "../model/rental.model.js";
 import User from "../model/user.model.js";
 import Maintanence from "../model/maintanence.model.js";
 
+// Add a new vehicle
 export const add = (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
@@ -22,14 +23,11 @@ export const add = (request, response, next) => {
     image: request.body.image,
     vendorId: request.body.vendorId,
   })
-    .then((result) => {
-      return response.status(200).json({ message: "Vehicle Saved...." });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "Internal server error...", err });
-    })
+    .then(() => response.status(200).json({ message: "Vehicle Saved...." }))
+    .catch(err => response.status(500).json({ error: "Internal server error...", err }));
 };
 
+// Save multiple vehicles in bulk
 export const saveInBulk = async (request, response, next) => {
   try {
     let vehicleList = request.body;
@@ -38,20 +36,20 @@ export const saveInBulk = async (request, response, next) => {
       let vehiclenumber = await Vehicle.findOne({ where: { registration_number } });
       let category = await Category.findOne({ where: { categoryName: categoryname } });
       if (!vehiclenumber && category)
-        await Vehicle.create({
-          id, brand, model, rent, description, categoryname, year, registration_number, image, vendorId
-        })
+        await Vehicle.create({ id, brand, model, rent, description, categoryname, year, registration_number, image, vendorId });
     }
     return response.status(200).json({ message: "All Vehicles Saved...." });
   } catch (err) {
     return response.status(500).json({ error: "Internal Server Error", err });
   }
-}
+};
 
+// Update vehicle details
 export const update = (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
     return response.status(401).json({ error: errors.array() });
+
   Vehicle.update({
     brand: request.body.brand,
     model: request.body.model,
@@ -66,58 +64,38 @@ export const update = (request, response, next) => {
     where: { id: request.body.id },
     raw: true,
   })
-    .then((result) => {
-      if (result[0])
-        return response.status(200).json({ message: "vehicle data updated...." });
-      return response.status(401).json({ message: "unauthorized request...." });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "internal server error....", err });
-    });
+    .then(result => result[0] ? response.status(200).json({ message: "vehicle data updated...." }) : response.status(401).json({ message: "unauthorized request...." }))
+    .catch(err => response.status(500).json({ error: "internal server error....", err }));
 };
 
+// List all vehicles
 export const list = (request, response, next) => {
   Vehicle.findAll({ raw: true })
-    .then((result) => {
-      return response.status(200).json({ data: result });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "Internal server error...", err });
-    });
+    .then(result => response.status(200).json({ data: result }))
+    .catch(err => response.status(500).json({ error: "Internal server error...", err }));
 };
 
+// List vehicles by category
 export const byCategory = (request, response, next) => {
   Vehicle.findAll({
     where: { categoryname: request.body.categoryName },
     include: [{ model: Vendor, as: "vendor" }] // Include associated Vendor
   })
-    .then(result => {
-      if (result.length > 0)
-        return response.status(200).json({ vehicleList: result });
-      else
-        return response.status(404).json({ error: "No vehicles found for the specified category" });
-    })
-    .catch(err => {
-      console.error(err);
-      return response.status(500).json({ error: "Internal Server Error", err });
-    });
+    .then(result => result.length > 0 ? response.status(200).json({ vehicleList: result }) : response.status(404).json({ error: "No vehicles found for the specified category" }))
+    .catch(err => response.status(500).json({ error: "Internal Server Error", err }));
 };
 
+// List vehicles by vendor ID
 export const byVendorId = (request, response, next) => {
   Vehicle.findAll({
     where: { vendorId: request.body.vendorId },
     raw: true,
   })
-    .then((result) => {
-      if (result) return response.status(200).json({ data: result });
-      return response.status(401).json({ message: "unauthorized request" });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "Internal server error...", err });
-    });
+    .then(result => result ? response.status(200).json({ data: result }) : response.status(401).json({ message: "unauthorized request" }))
+    .catch(err => response.status(500).json({ error: "Internal server error...", err }));
 };
 
-
+// Fetch vehicles and associated users
 export const fetchVehicleUser = (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
@@ -127,17 +105,11 @@ export const fetchVehicleUser = (request, response, next) => {
     where: { vendorId: request.body.vendorId, active: 0 },
     include: [{ model: Rental, required: true, include: [{ model: User, required: true }] }],
   })
-    .then((result) => {
-      if (result[0]) return response.status(200).json({ data: result });
-      return response
-        .status(401)
-        .json({ error: "data are not abelevel........" });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "Internal Server Error", err });
-    });
+    .then(result => result[0] ? response.status(200).json({ data: result }) : response.status(401).json({ error: "data are not available........" }))
+    .catch(err => response.status(500).json({ error: "Internal Server Error", err }));
 };
 
+// Fetch vehicles with maintenance records
 export const fetchVehicleMaintanence = (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
@@ -147,15 +119,11 @@ export const fetchVehicleMaintanence = (request, response, next) => {
     where: { vendorId: request.body.vendorId },
     include: [{ model: Maintanence, required: true }],
   })
-    .then((result) => {
-      if (result[0]) return response.status(200).json({ data: result });
-      return response.status(401).json({ error: "data are not abelevel........" });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "Internal Server Error", err });
-    });
+    .then(result => result[0] ? response.status(200).json({ data: result }) : response.status(401).json({ error: "data are not available........" }))
+    .catch(err => response.status(500).json({ error: "Internal Server Error", err }));
 };
 
+// Fetch vehicles with specific maintenance status
 export const fetchVehicleMaintanenceStatus = (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
@@ -165,15 +133,11 @@ export const fetchVehicleMaintanenceStatus = (request, response, next) => {
     where: { vendorId: request.body.vendorId },
     include: [{ model: Maintanence, required: true, where: { maintanenceStatus: request.body.maintanenceStatus } }],
   })
-    .then((result) => {
-      if (result[0]) return response.status(200).json({ data: result });
-      return response.status(401).json({ error: "data are not abelevel........" });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "Internal Server Error", err });
-    });
+    .then(result => result[0] ? response.status(200).json({ data: result }) : response.status(401).json({ error: "data are not available........" }))
+    .catch(err => response.status(500).json({ error: "Internal Server Error", err }));
 };
 
+// Remove a vehicle
 export const remove = (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
@@ -183,12 +147,6 @@ export const remove = (request, response, next) => {
     where: { id: request.body.id },
     raw: true,
   })
-    .then((result) => {
-      if (result)
-        return response.status(200).json({ message: "vehicle deleted...." });
-      return response.status(401).json({ message: "unauthorized request...." });
-    })
-    .catch((err) => {
-      return response.status(500).json({ error: "Internal server error.....", err });
-    });
+    .then(result => result ? response.status(200).json({ message: "vehicle deleted...." }) : response.status(401).json({ message: "unauthorized request...." }))
+    .catch(err => response.status(500).json({ error: "Internal server error.....", err }));
 };

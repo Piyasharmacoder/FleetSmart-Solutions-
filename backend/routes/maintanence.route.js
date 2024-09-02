@@ -4,16 +4,24 @@ import { add, update } from "../controller/maintanence.controller.js";
 
 const router = express.Router();
 
-router.post("/add",
-  body("maintanenceDate", "require maintanenceDate").notEmpty(),
-  body("vehicleId", "require vehicleId").notEmpty().isNumeric(),
+// Add a new maintenance record
+router.post(
+  "/add",
+  [
+    body("maintanenceDate", "Maintenance date is required").notEmpty(),
+    body("vehicleId", "Vehicle ID is required and must be numeric").notEmpty().isNumeric(),
+  ],
   add
 );
 
-router.put("/update",
-  body("maintanenceDate", "require maintanenceDate").notEmpty(),
-  body("maintanenceStatus", "require maintanenceStatus").notEmpty(),
-  body("vehicleId", "require vehicleId").notEmpty().isNumeric(),
+// Update an existing maintenance record
+router.put(
+  "/update",
+  [
+    body("maintanenceDate", "Maintenance date is required").notEmpty(),
+    body("maintanenceStatus", "Maintenance status is required").notEmpty(),
+    body("vehicleId", "Vehicle ID is required and must be numeric").notEmpty().isNumeric(),
+  ],
   update
 );
 

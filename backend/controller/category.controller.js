@@ -3,6 +3,7 @@ import Category from "../model/category.model.js";
 import Vehicle from "../model/vehicle.model.js";
 import { Op } from "sequelize";
 
+// Save a new category
 export const save = async (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
@@ -18,16 +19,17 @@ export const save = async (request, response, next) => {
       imageUrl: request.body.imageUrl,
     })
       .then((result) => {
-        return response.status(200).json({ data: result.dataValues, message: "category created..." });
+        return response.status(200).json({ data: result.dataValues, message: "Category created..." });
       })
       .catch((err) => {
         return response.status(500).json({ error: "Internal server error...", err });
       });
   } else {
-    return response.status(400).json({ message: "Category already exist..." });
+    return response.status(400).json({ message: "Category already exists..." });
   }
 };
 
+// Save multiple categories in bulk
 export const saveInBulk = async (request, response, next) => {
   try {
     let categoryList = request.body;
@@ -35,16 +37,17 @@ export const saveInBulk = async (request, response, next) => {
     for (let category of categoryList) {
       let { categoryName, imageUrl, use, description } = category;
 
-      let categoryname = await Category.findOne({ where: { categoryName } })
-      if (!categoryname)
+      let existingCategory = await Category.findOne({ where: { categoryName } });
+      if (!existingCategory)
         await Category.create({ categoryName, use, description, imageUrl });
     }
-    return response.status(200).json({ message: "All Category Saved.." });
+    return response.status(200).json({ message: "All categories saved.." });
   } catch (err) {
     return response.status(500).json({ error: "Internal Server Error", err });
   }
 };
 
+// List all categories
 export const Categorylist = (request, response, next) => {
   Category.findAll()
     .then((result) => {
@@ -55,6 +58,7 @@ export const Categorylist = (request, response, next) => {
     });
 };
 
+// Get category data including associated vehicles
 export const Categorydata = (request, response, next) => {
   const errors = validationResult(request);
   if (!errors.isEmpty())
@@ -66,15 +70,14 @@ export const Categorydata = (request, response, next) => {
   })
     .then((result) => {
       if (result) return response.status(200).json({ categories: result });
-      return response.status(401).json({ message: "unauthorized request" });
+      return response.status(401).json({ message: "Unauthorized request" });
     })
     .catch((err) => {
       return response.status(500).json({ error: "Internal server error", err });
     });
 };
 
-// ================================================================
-
+// Search categories by keywords
 export const search = async (request, response, next) => {
   try {
     const query = request.body.category;
@@ -93,8 +96,6 @@ export const search = async (request, response, next) => {
     return response.status(200).json(searchResults);
   } catch (error) {
     console.error("Error during search:", error);
-    return response
-      .status(500)
-      .json({ error: "An error occurred during search.", error });
+    return response.status(500).json({ error: "An error occurred during search.", error });
   }
 };

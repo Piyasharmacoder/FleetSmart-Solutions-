@@ -1,53 +1,85 @@
 import express from "express";
-import { add, byCategory, byVendorId, fetchVehicleMaintanence, fetchVehicleMaintanenceStatus, fetchVehicleUser, list, remove, saveInBulk, update } from "../controller/vehicle.controller.js";
+import {add, byCategory, byVendorId, fetchVehicleMaintanence, fetchVehicleMaintanenceStatus, fetchVehicleUser, list, remove, saveInBulk, update } from "../controller/vehicle.controller.js";
 import { body } from "express-validator";
 
 const router = express.Router();
 
+// Add a new vehicle
 router.post("/add",
-  body("brand", "brand is require").notEmpty(),
-  body("model", "model is require").notEmpty(),
-  body("rent", "rent is require").notEmpty(),
-  body("description", "description is require").notEmpty(),
-  body("categoryname", "categoryname is require").notEmpty(),
-  body("year", "year is require").notEmpty(),
-  body("registration_number", "registration_number is require").notEmpty(),
-  body("image", "image is require").notEmpty(),
-  body("vendorId", "vendorId is require").notEmpty(),
+  [
+    body("brand", "Brand is required").notEmpty(),
+    body("model", "Model is required").notEmpty(),
+    body("rent", "Rent is required").notEmpty().isNumeric(),
+    body("description", "Description is required").notEmpty(),
+    body("categoryname", "Category name is required").notEmpty(),
+    body("year", "Year is required").notEmpty().isNumeric(),
+    body("registration_number", "Registration number is required").notEmpty(),
+    body("image", "Image URL is required").notEmpty(),
+    body("vendorId", "Vendor ID is required").notEmpty().isNumeric()
+  ],
   add
 );
 
+// Save multiple vehicles in bulk
 router.post("/addinbulk", saveInBulk);
 
+// Update vehicle details
 router.put("/update",
-  body("brand", "brand is require").notEmpty(),
-  body("model", "model is require").notEmpty(),
-  body("rent", "rent is require").notEmpty(),
-  body("description", "description is require").notEmpty(),
-  body("categoryname", "categoryname is require").notEmpty(),
-  body("year", "year is require").notEmpty(),
-  body("registration_number", "registration_number is require").notEmpty(),
-  body("image", "image is require").notEmpty(),
-  body("vendorId", "require vendorId").notEmpty(),
-  body("id", "id is require").notEmpty().isNumeric(),
+  [
+    body("brand", "Brand is required").notEmpty(),
+    body("model", "Model is required").notEmpty(),
+    body("rent", "Rent is required").notEmpty().isNumeric(),
+    body("description", "Description is required").notEmpty(),
+    body("categoryname", "Category name is required").notEmpty(),
+    body("year", "Year is required").notEmpty().isNumeric(),
+    body("registration_number", "Registration number is required").notEmpty(),
+    body("image", "Image URL is required").notEmpty(),
+    body("vendorId", "Vendor ID is required").notEmpty().isNumeric(),
+    body("id", "Vehicle ID is required").notEmpty().isNumeric()
+  ],
   update
 );
 
-router.post("/byCategory", body("id", "id is require").notEmpty(), byCategory);
+// Get vehicles by category
+router.post("/byCategory",
+  body("categoryName", "Category name is required").notEmpty(),
+  byCategory
+);
 
+// List all vehicles
 router.get("/list", list);
 
-router.post("/byvendorid", byVendorId);
+// Get vehicles by vendor ID
+router.post("/byvendorid",
+  body("vendorId", "Vendor ID is required").notEmpty().isNumeric(),
+  byVendorId
+);
 
-router.post("/fetchVehicleUser", fetchVehicleUser);
+// Fetch vehicles associated with users
+router.post("/fetchVehicleUser",
+  body("vendorId", "Vendor ID is required").notEmpty().isNumeric(),
+  fetchVehicleUser
+);
 
-router.post("/fetchVehicleMaintanence", body("vendorId", "require vendorId").notEmpty(), fetchVehicleMaintanence);
+// Fetch vehicles maintenance records
+router.post("/fetchVehicleMaintanence",
+  body("vendorId", "Vendor ID is required").notEmpty().isNumeric(),
+  fetchVehicleMaintanence
+);
 
+// Fetch vehicles maintenance records by status
 router.post("/fetchVehicleMaintanenceStatus",
-  body("vendorId", "require vendorId").notEmpty(),
-  body("maintanenceStatus", "require maintanenceStatus").notEmpty(),
-  fetchVehicleMaintanenceStatus);
+  [
+    body("vendorId", "Vendor ID is required").notEmpty().isNumeric(),
+    body("maintanenceStatus", "Maintenance status is required").notEmpty()
+  ],
+  fetchVehicleMaintanenceStatus
+);
 
-router.delete("/remove", body("id", "id is require").notEmpty().isNumeric(), remove);
+// Remove a vehicle
+router.delete("/remove",
+  body("id", "Vehicle ID is required").notEmpty().isNumeric(),
+  remove
+);
 
 export default router;

@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/dbconfig.js";
 
+// Define the RentalItems model
 const RentalItems = sequelize.define("RentalItems", {
   id: {
     type: DataTypes.INTEGER,
@@ -25,8 +26,9 @@ const RentalItems = sequelize.define("RentalItems", {
   },
 });
 
+// Sync the model with the database
 RentalItems.sync()
-  .then((result) => {
+  .then(() => {
     console.log("RentalItems table created successfully");
   })
   .catch((err) => {

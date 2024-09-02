@@ -22,7 +22,9 @@ function SignUp() {
       .then(response => {
         if (response.status === 200) {
           toast.success("Sign Up Success....");
-          navigate('/signIn', { state: state })
+          setTimeout(() => {
+            navigate('/signIn', { state: state })
+          }, 2000);
         }
       }).catch(err => {
         if (err.response.status === 400) {

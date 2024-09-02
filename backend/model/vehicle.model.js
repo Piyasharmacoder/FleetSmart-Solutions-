@@ -2,6 +2,7 @@ import { DataTypes } from "sequelize";
 import sequelize from "../db/dbconfig.js";
 import Vendor from "./vendor.model.js";
 
+// Define the Vehicle model
 const Vehicle = sequelize.define("Vehicle", {
   id: {
     type: DataTypes.INTEGER,
@@ -59,12 +60,13 @@ const Vehicle = sequelize.define("Vehicle", {
   underscored: true,
 });
 
+// Sync the model with the database
 sequelize.sync()
   .then(() => {
-    console.log("vehicle table created....");
+    console.log("Vehicle table created....");
   })
   .catch((err) => {
-    console.log("something wrong....");
+    console.log("Something went wrong....");
     console.log(err);
   });
 
