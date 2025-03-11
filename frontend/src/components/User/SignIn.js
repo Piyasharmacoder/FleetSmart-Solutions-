@@ -32,13 +32,13 @@ const SignIn = () => {
     setLoading(true);
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}${state}/signin`, { email, password });
+      console.log(response.status);
+      
       if (response.status === 200) {
         localStorage.setItem('token', response.data.user.token);
         state === "user" ? localStorage.setItem('userid', response.data.user.user.id) : localStorage.setItem('vendorid', response.data.user.vender.id);
         toast.success("Sign In Success....");
-        setTimeout(() => {
-          navigate(state === "user" ? '/' : '/myvehicle');
-        }, 2000);
+        navigate(state === "user" ? '/' : '/myvehicle');
       }
     } catch (error) {
       toast.error("User does not exist or incorrect credentials...");

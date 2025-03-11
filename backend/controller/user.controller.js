@@ -37,6 +37,8 @@ export const signIn = async (request, response, next) => {
   let password = request.body.password;
 
   let user = await User.findOne({ where: { email: email }, raw: true });
+  console.log(user);
+  
   if (user) {
     if (User.checkPassword(password, user.password)) {
       let payload = { subject: email };
